@@ -1023,7 +1023,10 @@
 
           <div class="col-lg-7">
             <!--<form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">-->
-            <form action="https://formsubmit.co/contact@coherentix.com" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <!-- Hidden iframe to capture the form response silently -->
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
+            <form id="contact-form" action="https://formsubmit.co/contact@coherentix.com" method="post" class="php-email-form" data-aos="fade-up"
+                  data-aos-delay="200" target="hidden_iframe" onsubmit="showSuccessMessage();">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -1055,10 +1058,9 @@
                 </div>
                 <!-- Hidden fields -->
                 <input type="text" name="_honey" style="display:none">
-				<input type="hidden" name="_subject" value="New Contact Form Submission!">
-				<input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://www.coherentix.com/thankyou.html">
+                <!--<input type="hidden" name="_next" value="https://www.coherentix.com/thankyou.html">-->
               </div>
             </form>
           </div><!-- End Contact Form -->
@@ -1181,6 +1183,36 @@
 <div style="position: fixed; bottom: 10px; right: 10px; background-color: #f43f5e; color: white; padding: 8px 12px; border-radius: 8px; font-size: 14px; z-index: 999;">
   🚧 Under Construction
 </div>
+
+<div id="success-popup" style="
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #22c55e;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  font-size: 1.2rem;
+  z-index: 9999;
+">
+  ✅ Your message has been sent successfully!
+</div>
+
+<script>
+  function showSuccessMessage() {
+    setTimeout(() => {
+      document.getElementById("success-popup").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("success-popup").style.display = "none";
+        document.getElementById("contact-form").reset(); // Reset form
+      }, 4000); // Show message for 4 seconds
+    }, 1000); // Delay to allow form submission
+  }
+</script>
 
 </body>
 
