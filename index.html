@@ -1022,7 +1022,8 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <!--<form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">-->
+            <form action="https://formsubmit.co/contact@coherentix.com" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -1052,7 +1053,11 @@
 
                   <button type="submit">Send Message</button>
                 </div>
-
+                <!-- Hidden fields -->
+                <input type="text" name="_honey" style="display:none">
+				<input type="hidden" name="_subject" value="New Contact Form Submission!">
+				<input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
               </div>
             </form>
           </div><!-- End Contact Form -->
