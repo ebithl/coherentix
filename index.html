@@ -70,14 +70,14 @@
         { title: "Test Engineering", desc: "Comprehensive testing for reliable operations.", icon: "✅" },
       ];
       const differences = [
-        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "" },
-        { title: "From Concept to Prototype", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "" },
-        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "" },
-        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "" },
+        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "bi-buildings-fill" },
+        { title: "From Concept to Prototype", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "bi-lightbulb-fill" },
+        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "bi-clipboard-check-fill" },
+        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "bi-shield-fill-check" },
       ];
       const models = [
-        { title: "Fixed Price Model: Predictable Budget, Guaranteed Results", desc: "For projects with clear goals and requirements, our Fixed Price model offers maximum predictability. We agree on the scope, price, and timeline before we start. This model minimizes your management effort and gives you a dedicated team committed to delivering your product on time and on budget.", icon: "" },
-        { title: "Time & Materials Model: Maximum Flexibility, Full Control", desc: "Ideal for both long-term partnerships and projects involving research and development, this model offers ultimate adaptability. You pay for our team's time and expertise at a set hourly rate, giving you the freedom to evolve the project scope, requirements, and features as needed. This pay-as-you-go approach ensures you have complete control over the budget and project direction at all times.", icon: "" },
+        { title: "Fixed Price Model", subtitle: "Predictable Budget, Guaranteed Results", desc: "For projects with clear goals and requirements, our Fixed Price model offers maximum predictability. We agree on the scope, price, and timeline before we start. This model minimizes your management effort and gives you a dedicated team committed to delivering your product on time and on budget.", icon: "bi-coin" },
+        { title: "Time & Materials Model", subtitle: "Maximum Flexibility, Full Control", desc: "Ideal for both long-term partnerships and projects involving research and development, this model offers ultimate adaptability. You pay for our team's time and expertise at a set hourly rate, giving you the freedom to evolve the project scope, requirements, and features as needed. This pay-as-you-go approach ensures you have complete control over the budget and project direction at all times.", icon: "bi-clock-fill" },
       ];
       return (
         <section id="services" className="py-16 bg-gray-100">
@@ -100,7 +100,7 @@
 		      <div className="bg-white p-12 rounded-lg shadow-lg">
 		        {differences.map((difference, index) => (
 		          <div key={index} className="mb-6">
-		            <h3 className="text-xl font-semibold text-blue-500">{difference.title}</h3>
+		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${difference.icon} me-2`}></i>{difference.title}</h3>
 		            <p className="mt-2 text-gray-600">{difference.desc}</p>
 		          </div>
 		        ))}
@@ -115,7 +115,8 @@
 
                 {models.map((model, index) => (
 		          <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-		            <h3 className="text-xl font-semibold text-blue-500">{model.title}</h3>
+		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${model.icon} me-2`}></i>{model.title}</h3>
+		            <p className="text-l font-semibold text-gray-900">{model.subtitle}</p>
 		            <p className="mt-2 text-gray-600">{model.desc}</p>
 		          </div>
 		        ))}
@@ -173,6 +174,7 @@
     const Expertise = () => {
       const expertise = [
         { category: "Medical/Healthcare Product Engineering",
+          icon: "bi-heart-pulse-fill",
           list:
             ["Medical devices and solutions from initial concept through market launch",
              "Full FDA regulatory compliance and IEC 62304 for Medical Safety throughout the design and development process",
@@ -182,18 +184,21 @@
             ]
         },
         { category: "Rapid Innovation",
+          icon: "bi-lightning-charge-fill",
           list:
             ["Rapid prototyping and proof-of-concept development of ideas",
              "Engineering support for early stage start-ups"
             ]
         },
         { category: "Industrial and Automotive Product Engineering",
+          icon: "bi-car-front-fill",
           list:
             ["Products and solutions for Industrial systems complying with IEC 61508",
              "Automotive systems complying with ISO 26262 for Automotive applications ensuring functional safety and performance"
             ]
         },
         { category: "Engineering Consulting Services",
+          icon: "bi-briefcase-fill",
           list:
             ["Stategic Engineering, Technical leadership for Startups",
              "Medical Device Consulting - Engineering support for IEC and ISO safety and performance standards compliance, IEC 62304 audit preparation, Technical support for US FDA 510K, CDSCO filing.",
@@ -202,6 +207,7 @@
             ]
         },
         { category: "AI enabled products and Services (under development)",
+          icon: "bi-robot",
           list:
             ["AI enabled Anomaly detection service platform for detecting, analyzing and notification of anomolous events",
              "AI enabled Test Engineering platform.",
@@ -209,6 +215,7 @@
             ]
         },
         { category: "Core Technologies",
+          icon: "bi-tools",
           list:
             ["Programming Languages: C, C++, Java, NodeJS, Angular and other software tech stacks and databases",
              "AI/ML Expertise: Knowledge and understanding of AI, Deep Learning and LLM based applications, Agentic AI applications, RAG based knowledge systems"
@@ -221,8 +228,8 @@
             <h2 className="text-3xl font-bold text-center text-gray-500">Our Expertise</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {expertise.map((expertise, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-blue-500">{expertise.category}</h3>
+                <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${expertise.icon} me-2`}></i>{expertise.category}</h3>
                   <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
                     {expertise.list.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -263,6 +270,7 @@
     const Stories = () => {
       const stories = [
         { category: "Healthcare and Medtech",
+          icon: "bi-mouse3-fill",
           list:
             ["Custom healthcare software development services to technology startups working on medical devices",
              "Vital signs monitors, wearable patient monitors",
@@ -274,6 +282,7 @@
             ]
         },
         { category: "Industrial Automation",
+          icon: "bi-diagram-3-fill",
           list:
             ["Consumer and Industrial grade RO system (Drinkprime)",
              "Industry 4.0 solutions, factory floor automation systems and supply chain.",
@@ -281,18 +290,21 @@
             ]
         },
         { category: "IOT and Wearables",
+          icon: "bi-watch",
           list:
             ["Wearable multi-parameter Patient monitoring device (Ten3T)",
              "Custom Multi-sensor IOT hardware platform."
             ]
         },
         { category: "Networking and Communication",
+          icon: "bi-hdd-network-fill",
           list:
             ["Layer-2 and Layer-3 Networking Protocol Stack.",
              "Cloud architecture"
             ]
         },
         { category: "Cloud and Platform Engineering",
+          icon: "bi-clouds-fill",
           list:
             ["Linux BSPs, RTOS for custom hardware",
              "System design for Data intensive applications, microservices, multitenant, distributed and collaborative systems.",
@@ -301,6 +313,7 @@
             ]
         },
         { category: "Embedded Systems",
+          icon: "bi-cpu-fill",
           list:
             ["Embedded hardware and firmware on Microcontrollers, ARM and MIPS for Industrial Automation and products",
              "Complex applications and software stack for RTOS, Linux and Unix kernel, Embedded Systems for several products"
@@ -313,8 +326,8 @@
             <h2 className="text-3xl font-bold text-center text-gray-500">Our Success Stories</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {stories.map((story, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-blue-500">{story.category}</h3>
+                <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                  <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${story.icon} me-2`}></i>{story.category}</h3>
                   <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
                     {story.list.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -336,7 +349,7 @@
             <h2 className="text-3xl font-bold text-center text-gray-500">About Us</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-person-circle text-blue-500 mr-2"></i>Who We Are</h3>
+                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-people-fill text-blue-500 mr-2"></i>Who We Are</h3>
                 <div className="text-gray-700">
                 <p class="mb-4" >
                   Coherentix Labs is a global technology company founded by a collective of seasoned engineers and consultants with over
@@ -355,7 +368,7 @@
                 </div>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-gear-fill text-blue-500 mr-2"></i>What We Do</h3>
+                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-person-workspace text-blue-500 mr-2"></i>What We Do</h3>
                 <div className="text-gray-700">
                 <p class="mb-4">
                   We help our clients <strong>turn ideas into intelligent, compliant, and market-ready products</strong>. Whether it's a startup
