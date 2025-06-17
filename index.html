@@ -3,29 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coherentix Innovations</title>
+  <title>Coherentix Labs</title>
+  <link href="images/favicon.png" rel="icon">
   <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
   <div id="root"></div>
   <script type="text/babel">
     const NavBar = () => {
       return (
-        <nav className="bg-gray-900 text-white fixed w-full z-10 top-0 shadow-md">
+        <nav className="bg-white text-blue-400 fixed w-full z-10 top-0 shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
-              <div className="text-2xl font-bold">Coherentix</div>
+
+              <div className="flex items-center space-x-2">
+                <img src="images/logo.png" alt="Logo" style={{ width: "40px", height: "40px" }} />
+                <div className="text-2xl font-bold">Coherentix</div>
+              </div>
+
               <div className="hidden md:flex space-x-8">
-                <a href="#home" className="hover:text-blue-400">Home</a>
-                <a href="#services" className="hover:text-blue-400">Services</a>
-                <a href="#industries" className="hover:text-blue-400">Industries</a>
-                <a href="#portfolio" className="hover:text-blue-400">Portfolio</a>
-                <a href="#customers" className="hover:text-blue-400">Customers</a>
-                <a href="#about" className="hover:text-blue-400">About</a>
-                <a href="#contact" className="hover:text-blue-400">Contact</a>
+                <a href="#home" className="hover:text-blue-800">Home</a>
+                <a href="#services" className="hover:text-blue-800">Services</a>
+                <a href="#industries" className="hover:text-blue-800">Industries</a>
+                <a href="#portfolio" className="hover:text-blue-800">Portfolio</a>
+                <a href="#customers" className="hover:text-blue-800">Customers</a>
+                <a href="#about" className="hover:text-blue-800">About</a>
+                <a href="#contact" className="hover:text-blue-800">Contact</a>
               </div>
               <div className="md:hidden">
                 <button className="focus:outline-none" onClick={() => alert('Mobile menu toggle')}>
@@ -42,9 +49,12 @@
 
     const Hero = () => {
       return (
-        <section id="home" className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white h-screen flex items-center">
+        <section id="home" className="bg-gradient-to-r from-blue-400 to-indigo-500 text-white h-screen flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-extrabold">Innovate with Coherentix</h1>
+            <h1 className="text-4xl md:text-6xl font-extrabold">Coherentix</h1>
+            {/* <p className="mt-4 text-lg md:text-xl">Coherent (I)ntelligent Systems, E(x)pertly Crafted!</p> */}
+            <p className="mt-4 text-lg md:text-xl"><span class="text-white font-bold">Coherent I</span><span class="text-gray-300">ntelligent Systems, E</span><span class="text-white font-bold">x</span><span class="text-gray-300">pertly Crafted!</span></p>
+            <br/>
             <p className="mt-4 text-lg md:text-xl">Delivering cutting-edge technology solutions for your business success.</p>
             <a href="#contact" className="mt-6 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Get Started</a>
           </div>
@@ -59,18 +69,57 @@
         { title: "Engineering AI application, Automation", desc: "Intelligent AI applications and automation solutions.", icon: "🧠" },
         { title: "Test Engineering", desc: "Comprehensive testing for reliable operations.", icon: "✅" },
       ];
+      const differences = [
+        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "" },
+        { title: "From Concept to Prototype", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "" },
+        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "" },
+        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "" },
+      ];
+      const models = [
+        { title: "Fixed Price Model: Predictable Budget, Guaranteed Results", desc: "For projects with clear goals and requirements, our Fixed Price model offers maximum predictability. We agree on the scope, price, and timeline before we start. This model minimizes your management effort and gives you a dedicated team committed to delivering your product on time and on budget.", icon: "" },
+        { title: "Time & Materials Model: Maximum Flexibility, Full Control", desc: "Ideal for both long-term partnerships and projects involving research and development, this model offers ultimate adaptability. You pay for our team's time and expertise at a set hourly rate, giving you the freedom to evolve the project scope, requirements, and features as needed. This pay-as-you-go approach ensures you have complete control over the budget and project direction at all times.", icon: "" },
+      ];
       return (
         <section id="services" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Our Services</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Services</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
                   <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-semibold">{service.title}</h3>
+                  <h3 className="text-xl font-semibold text-blue-500">{service.title}</h3>
                   <p className="mt-2 text-gray-600">{service.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+          <br/>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Value Proposition</h2>
+            <div className="mt-12 grid grid-cols-1 gap-8">
+		      <div className="bg-white p-12 rounded-lg shadow-lg">
+		        {differences.map((difference, index) => (
+		          <div key={index} className="mb-6">
+		            <h3 className="text-xl font-semibold text-blue-500">{difference.title}</h3>
+		            <p className="mt-2 text-gray-600">{difference.desc}</p>
+		          </div>
+		        ))}
+		      </div>
+		    </div>
+          </div>
+          <br/>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Engagement Models</h2>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                {models.map((model, index) => (
+		          <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+		            <h3 className="text-xl font-semibold text-blue-500">{model.title}</h3>
+		            <p className="mt-2 text-gray-600">{model.desc}</p>
+		          </div>
+		        ))}
+
             </div>
           </div>
         </section>
@@ -82,7 +131,7 @@
       return (
         <section id="industries" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Industries We Serve</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Industries We Serve</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {industries.map((industry, index) => (
                 <div key={index} className="bg-blue-600 text-white p-6 rounded-lg shadow-lg text-center">
@@ -104,13 +153,13 @@
       return (
         <section id="portfolio" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Our Portfolio</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Portfolio</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img src={project.img} alt={project.name} className="w-full h-48 object-cover" />
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold">{project.name}</h3>
+                    <h3 className="text-xl font-semibold text-blue-500">{project.name}</h3>
                     <p className="mt-2 text-gray-600">{project.desc}</p>
                   </div>
                 </div>
@@ -144,10 +193,19 @@
              "Automotive systems complying with ISO 26262 for Automotive applications ensuring functional safety and performance"
             ]
         },
-        { category: "Leadership and Partnership",
+        { category: "Engineering Consulting Services",
           list:
-            ["Strong Engineering leadership and Technical management expertise",
+            ["Stategic Engineering, Technical leadership for Startups",
+             "Medical Device Consulting - Engineering support for IEC and ISO safety and performance standards compliance, IEC 62304 audit preparation, Technical support for US FDA 510K, CDSCO filing.",
+             "Regulatory guidance",
              "Flexible Business and Intellectual Property arrangements that suit customer expectations"
+            ]
+        },
+        { category: "AI enabled products and Services (under development)",
+          list:
+            ["AI enabled Anomaly detection service platform for detecting, analyzing and notification of anomolous events",
+             "AI enabled Test Engineering platform.",
+             "AI enabled Compliance and Document management system for regulated industries."
             ]
         },
         { category: "Core Technologies",
@@ -160,11 +218,11 @@
       return (
         <section id="expertise" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Our Expertise</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Expertise</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {expertise.map((expertise, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-gray-900">{expertise.category}</h3>
+                  <h3 className="text-xl font-semibold text-blue-500">{expertise.category}</h3>
                   <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
                     {expertise.list.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -187,11 +245,11 @@
       return (
         <section id="customers" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Our Customers</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Customers</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {customers.map((customer, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-gray-900">{customer.category}:</h3>
+                  <h3 className="text-xl font-semibold text-blue-500">{customer.category}</h3>
                   <img src={customer.img} alt={customer.name} className="mx-auto mt-4 h-12 object-contain" onError={(e) => { e.target.src = "https://via.placeholder.com/150x50?text=" + customer.name; }} />
                 </div>
               ))}
@@ -204,17 +262,42 @@
 
     const Stories = () => {
       const stories = [
-        { category: "Medical Products",
+        { category: "Healthcare and Medtech",
           list:
-            ["Patient Monitors, Infusion Pumps, Implant Programmers and Monitors",
+            ["Custom healthcare software development services to technology startups working on medical devices",
+             "Vital signs monitors, wearable patient monitors",
+             "Infusion Pumps",
+             "Implant Programmers and Monitors",
              "Remote Patient Monitoring Software Platforms",
+             "RF Ablasion System (Nesa Medtech)",
              "Many developed from concept, engineering, regulatory clearance to production level"
             ]
         },
-        { category: "Networking Products",
+        { category: "Industrial Automation",
           list:
-            ["L2/L3 Switches and Software stacks",
-             "High Performance Internet Gateways"
+            ["Consumer and Industrial grade RO system (Drinkprime)",
+             "Industry 4.0 solutions, factory floor automation systems and supply chain.",
+             "Predective maintainance using AI, sensors."
+            ]
+        },
+        { category: "IOT and Wearables",
+          list:
+            ["Wearable multi-parameter Patient monitoring device (Ten3T)",
+             "Custom Multi-sensor IOT hardware platform."
+            ]
+        },
+        { category: "Networking and Communication",
+          list:
+            ["Layer-2 and Layer-3 Networking Protocol Stack.",
+             "Cloud architecture"
+            ]
+        },
+        { category: "Cloud and Platform Engineering",
+          list:
+            ["Linux BSPs, RTOS for custom hardware",
+             "System design for Data intensive applications, microservices, multitenant, distributed and collaborative systems.",
+             "Architecting high performance, data intensive applications with microservices, Docker, Kubernetes (e.g., Remote Patient Monitoring)",
+             "Lead Re-architecture of legacy software platforms with modern technologies."
             ]
         },
         { category: "Embedded Systems",
@@ -222,21 +305,16 @@
             ["Embedded hardware and firmware on Microcontrollers, ARM and MIPS for Industrial Automation and products",
              "Complex applications and software stack for RTOS, Linux and Unix kernel, Embedded Systems for several products"
             ]
-        },
-        { category: "Cloud and AI Solutions",
-          list:
-            ["Architecting high performance, data intensive applications with microservices, Docker, Kubernetes (e.g., Remote Patient Monitoring)"
-            ]
         }
       ];
       return (
-        <section id="expertise" className="py-16">
+        <section id="expertise" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Our Success Stories</h2>
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Success Stories</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {stories.map((story, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-gray-900">{story.category}</h3>
+                  <h3 className="text-xl font-semibold text-blue-500">{story.category}</h3>
                   <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
                     {story.list.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -255,22 +333,46 @@
       return (
         <section id="about" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">About Us</h2>
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <p className="mt-6 text-lg text-gray-600 text-center">
-              Coherentix Labs is a global technology company specializing in delivering innovative solutions across industries. With a team of experienced professionals, we empower businesses to achieve their digital transformation goals.
-            </p>
-            <br/>
-            <p className="mt-6 text-lg text-gray-600 text-center">
-			  We are a technology company founded and led by seasoned engineers with over 150 years of combined experience in embedded products, software, and platform engineering.
-			</p>
-            <p className="mt-6 text-lg text-gray-600 text-center">
-              Our team consists of skilled professionals and consultants specializing in both hardware and software engineering, with proven hardware and software product development across multiple industries including medical devices, healthcare solutions, industrial automation, networking, and operating systems.
-			</p>
-            <p className="mt-6 text-lg text-gray-600 text-center">
-              We work at the confluence of Software, Hardware, Embedded Systems, Cloud, Data and Artificial Intelligence to develop Smart Intelligent products and solutions for various use cases of our customers.
-            </p>
-
+            <h2 className="text-3xl font-bold text-center text-gray-500">About Us</h2>
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-person-circle text-blue-500 mr-2"></i>Who We Are</h3>
+                <div className="text-gray-700">
+                <p class="mb-4" >
+                  Coherentix Labs is a global technology company founded by a collective of seasoned engineers and consultants with over
+                  <strong> 150 years of combined experience</strong>. Our roots lie in deep product engineering expertise across embedded systems,
+                  software platforms, and hardware solutions.
+                </p>
+                <p class="mb-4">
+                  We bring together a unique blend of <strong>hardware and software proficiency</strong>, operating at the intersection of
+                  <em> Embedded Systems, Cloud, Data, and Artificial Intelligence</em>. Our team has successfully built and delivered products across
+                  domains such as <strong>medical devices</strong>, <strong>industrial automation</strong>, <strong>networking infrastructure</strong> and <strong>healthcare platforms</strong>.
+                </p>
+                <p>
+                  At our core, we are engineers who understand not just technology, but the <strong>art of building reliable, scalable,
+                  and intelligent systems</strong> that work in the real world.
+                </p>
+                </div>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-gear-fill text-blue-500 mr-2"></i>What We Do</h3>
+                <div className="text-gray-700">
+                <p class="mb-4">
+                  We help our clients <strong>turn ideas into intelligent, compliant, and market-ready products</strong>. Whether it's a startup
+                  or an enterprise, our focus is on enabling innovation through engineering precision and deep domain understanding.
+                </p>
+                <p class="mb-4">
+                  Our services span the full product development lifecycle—from <strong>concept and prototyping</strong> to
+                  <strong> regulatory-compliant deployment</strong>, particularly in complex domains like <strong>medical and healthcare</strong>.
+                  We are proficient in navigating global standards like <em>US FDA 510K, IEC 60601, IEC 62304, and ISO 14971</em>.
+                </p>
+                <p>
+                  Beyond healthcare, we design <strong>next-generation connected solutions</strong> for
+                  <strong> industrial automation</strong>, <strong>automotive systems</strong> and <strong>consumer electronics </strong>
+                  leveraging smart technologies to drive transformation and value.
+                </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -279,19 +381,39 @@
 
     const Contact = () => {
       return (
-        <section id="contact" className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-900">Get in Touch</h2>
-            <div className="mt-12 max-w-lg mx-auto">
-              <div className="space-y-4">
-                <input type="text" placeholder="Your Name" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-                <input type="email" placeholder="Your Email" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-                <textarea placeholder="Your Message" rows="4" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-                <button className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700" onClick={() => alert('Message sent!')}>Send Message</button>
-              </div>
-            </div>
-          </div>
-        </section>
+
+
+<section id="contact" className="py-16 bg-gray-100">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-3xl font-bold text-center text-gray-500">Get in Touch</h2>
+
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      {/* Contact Info - 1/3 width */}
+      <div className="bg-white p-6 rounded-lg shadow-lg md:col-span-1 flex items-start space-x-4">
+        <i className="bi bi-envelope text-blue-600 text-2xl mt-1"></i>
+        <div>
+          <h3 className="text-xl font-semibold text-gray-800 mb-1">Email Us</h3>
+          <p className="text-gray-600">contact@coherentix.com</p>
+        </div>
+      </div>
+
+      {/* Contact Form - 2/3 width */}
+      <div className="bg-white p-9 rounded-lg shadow-lg md:col-span-2">
+        <div className="space-y-4">
+          <input type="text" placeholder="Your Name" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+          <input type="email" placeholder="Your Email" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+          <textarea placeholder="Your Message" rows="4" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+          <button className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700" onClick={() => alert('Message sent!')}>Send Message</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
       );
     };
 
