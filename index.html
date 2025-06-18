@@ -305,6 +305,8 @@
     };
 
     const Stories = () => {
+      const desc = "The team developed a comprehensive wearable IoT medical device solution that included the complete data intensive software infrastructure for remote patient monitoring. This project included development of a centralized command centre platform for monitoring patient events across several fixed and mobile healthcare sites with advanced event disposition and triaging, reporting and data analysis capabilities. Our involvement spanned the entire product lifecycle - from initial market research and engineering design through FDA clearance, standards compliance testing, and successful 510(K) submissions for multiple products in the portfolio.";
+
       const stories = [
         { category: "Healthcare and Medtech",
           icon: "bi-mouse3-fill",
@@ -361,6 +363,9 @@
         <section id="stories" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center text-gray-500">Our Success Stories</h2>
+            <div className="mt-12">
+              <p><b>Featured Project:</b> {desc}</p>
+            </div>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {stories.map((story, index) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
