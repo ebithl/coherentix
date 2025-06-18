@@ -16,23 +16,27 @@
   <script type="text/babel">
     const NavBar = () => {
       return (
-        <nav className="bg-white text-blue-400 fixed w-full z-10 top-0 shadow-md">
+        <nav className="bg-white text-blue-400 fixed w-full z-10 top-0 shadow-md" style={{ color: "#5BBBFF" }}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
 
               <div className="flex items-center space-x-2">
                 <img src="images/logo.png" alt="Logo" style={{ width: "40px", height: "40px" }} />
-                <div className="text-2xl font-bold">Coherentix</div>
+                <div className="text-2xl font-bold">Coherent<span style={{ color: "#FF0000" }}>i</span>x</div>
               </div>
 
-              <div className="hidden md:flex space-x-8">
+              <div className="hidden md:flex space-x-8 font-semibold">
                 <a href="#home" className="hover:text-blue-800">Home</a>
-                <a href="#services" className="hover:text-blue-800">Services</a>
-                <a href="#industries" className="hover:text-blue-800">Industries</a>
-                <a href="#portfolio" className="hover:text-blue-800">Portfolio</a>
-                <a href="#customers" className="hover:text-blue-800">Customers</a>
                 <a href="#about" className="hover:text-blue-800">About</a>
+                <a href="#expertise" className="hover:text-blue-800">Expertise</a>
+                <a href="#proposition" className="hover:text-blue-800">Value Proposition</a>
+                <a href="#stories" className="hover:text-blue-800">Success Stories</a>
+                <a href="#customers" className="hover:text-blue-800">Customers</a>
                 <a href="#contact" className="hover:text-blue-800">Contact</a>
+                {/*<a href="#services" className="hover:text-blue-800">Services</a>
+                <a href="#industries" className="hover:text-blue-800">Industries</a>
+                <a href="#portfolio" className="hover:text-blue-800">Portfolio</a>*/}
+
               </div>
               <div className="md:hidden">
                 <button className="focus:outline-none" onClick={() => alert('Mobile menu toggle')}>
@@ -49,14 +53,38 @@
 
     const Hero = () => {
       return (
-        <section id="home" className="bg-gradient-to-r from-blue-400 to-indigo-500 text-white h-screen flex items-center">
+        <section id="home" className="bg-gradient-to-r from-[#5BBBFF] to-[#3F60A4] text-white h-screen flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-6xl font-extrabold">Coherentix</h1>
-            {/* <p className="mt-4 text-lg md:text-xl">Coherent (I)ntelligent Systems, E(x)pertly Crafted!</p> */}
             <p className="mt-4 text-lg md:text-xl"><span class="text-white font-bold">Coherent I</span><span class="text-gray-300">ntelligent Systems, E</span><span class="text-white font-bold">x</span><span class="text-gray-300">pertly Crafted!</span></p>
-            <br/>
-            <p className="mt-4 text-lg md:text-xl">Delivering cutting-edge technology solutions for your business success.</p>
-            <a href="#contact" className="mt-6 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Get Started</a>
+            <a href="#about" className="mt-4 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Get Started</a>
+          </div>
+        </section>
+      );
+    };
+
+    const Proposition = () => {
+      const propositions = [
+        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "bi-buildings-fill" },
+        { title: "Rapid Prototyping of Complex Design to POC for any Industry", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "bi-lightbulb-fill" },
+        { title: "Medical Domain Expertise", desc: "Our team has built several advanced end-to-end solutions for medical devices and healthcare systems", icon: "bi-clipboard2-pulse-fill" },
+        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "bi-clipboard-check-fill" },
+        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "bi-shield-fill-check" },
+      ];
+      return (
+        <section id="proposition" className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-gray-500">Our Value Proposition</h2>
+            <div className="mt-12 grid grid-cols-1 gap-8">
+		      <div className="bg-white p-12 rounded-lg shadow-lg">
+		        {propositions.map((proposition, index) => (
+		          <div key={index} className="mb-6">
+		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${proposition.icon} me-2`}></i>{proposition.title}</h3>
+		            <p className="mt-2 text-gray-600">{proposition.desc}</p>
+		          </div>
+		        ))}
+		      </div>
+		    </div>
           </div>
         </section>
       );
@@ -174,6 +202,7 @@
     const Expertise = () => {
       const expertise = [
         { category: "Medical/Healthcare Product Engineering",
+          img: "./images/portfolio-medical.png",
           icon: "bi-heart-pulse-fill",
           list:
             ["Medical devices and solutions from initial concept through market launch",
@@ -184,6 +213,7 @@
             ]
         },
         { category: "Rapid Innovation",
+          img: "./images/portfolio-prototype.png",
           icon: "bi-lightning-charge-fill",
           list:
             ["Rapid prototyping and proof-of-concept development of ideas",
@@ -191,6 +221,7 @@
             ]
         },
         { category: "Industrial and Automotive Product Engineering",
+          img: "./images/portfolio-industrial.png",
           icon: "bi-car-front-fill",
           list:
             ["Products and solutions for Industrial systems complying with IEC 61508",
@@ -198,6 +229,7 @@
             ]
         },
         { category: "Engineering Consulting Services",
+          img: "./images/portfolio-consultancy.png",
           icon: "bi-briefcase-fill",
           list:
             ["Stategic Engineering, Technical leadership for Startups",
@@ -207,6 +239,7 @@
             ]
         },
         { category: "AI enabled products and Services (under development)",
+          img: "./images/portfolio-ai.png",
           icon: "bi-robot",
           list:
             ["AI enabled Anomaly detection service platform for detecting, analyzing and notification of anomolous events",
@@ -215,6 +248,7 @@
             ]
         },
         { category: "Core Technologies",
+          img: "./images/portfolio-coretech.png",
           icon: "bi-tools",
           list:
             ["Programming Languages: C, C++, Java, NodeJS, Angular and other software tech stacks and databases",
@@ -228,13 +262,15 @@
             <h2 className="text-3xl font-bold text-center text-gray-500">Our Expertise</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {expertise.map((expertise, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                <div key={index} className="bg-white p-6 rounded-lg shadow-lg overflow-hidden">
+                  <img src={expertise.img} alt={expertise.category} className="w-full h-48 object-cover" />
                   <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${expertise.icon} me-2`}></i>{expertise.category}</h3>
                   <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
                     {expertise.list.map((item, i) => (
                       <li key={i}>{item}</li>
                     ))}
                   </ul>
+
                 </div>
               ))}
             </div>
@@ -321,7 +357,7 @@
         }
       ];
       return (
-        <section id="expertise" className="py-16 bg-gray-100">
+        <section id="stories" className="py-16 bg-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center text-gray-500">Our Success Stories</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -393,6 +429,20 @@
     };
 
     const Contact = () => {
+
+      const handleFormSubmit = (e) => {
+        console.log("handleFormSubmit called");
+        setTimeout(() => {
+          document.getElementById("success-popup").style.display = "block";
+
+          setTimeout(() => {
+            document.getElementById("success-popup").style.display = "none";
+            document.getElementById("contact-form").reset(); // Reset form
+          }, 4000); // Show message for 4 seconds
+        }, 1000); // Delay to allow form submission
+      };
+
+
       return (
 
 
@@ -413,12 +463,32 @@
 
       {/* Contact Form - 2/3 width */}
       <div className="bg-white p-9 rounded-lg shadow-lg md:col-span-2">
-        <div className="space-y-4">
-          <input type="text" placeholder="Your Name" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-          <input type="email" placeholder="Your Email" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-          <textarea placeholder="Your Message" rows="4" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-          <button className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700" onClick={() => alert('Message sent!')}>Send Message</button>
-        </div>
+        <div id="success-popup" style={{
+		  display: "none",
+		  position: "fixed",
+		  top: "30%",
+		  left: "50%",
+		  transform: "translate(-50%, -50%)",
+		  "background-color": "#5BBBFF",
+		  color: "white",
+		  padding: "20px 40px",
+		  "border-radius": "12px",
+		  "box-shadow": "0 0 20px rgba(0,0,0,0.2)",
+		  "font-size": "1.2rem",
+		  "z-index": "9999"
+		}}>Your message has been sent successfully!</div>
+        <iframe name="hidden_iframe" style={{display: "none"}}></iframe>
+        <form id="contact-form" action="https://formsubmit.co/ebith@coherentix.com" method="post" target="hidden_iframe" onSubmit={handleFormSubmit}>
+          <div className="space-y-4">
+            <input type="text" name="name" id="name-field" placeholder="Your Name" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <input type="email" name="email" id="email-field" placeholder="Your Email" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+            <textarea name="message" id="message-field" placeholder="Your Message" rows="4" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+            <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-500" >Send Message</button>
+            <input type="text" name="_honey" style={{display: "none"}}/>
+            <input type="hidden" name="_captcha" value="false"/>
+            <input type="hidden" name="_template" value="table"/>
+          </div>
+        </form>
       </div>
 
     </div>
@@ -432,7 +502,7 @@
 
     const Footer = () => {
       return (
-        <footer className="bg-gray-900 text-white py-8">
+        <footer className="bg-gradient-to-r from-[#5BBBFF] to-[#3F60A4] text-white py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p>Copyright © 2025 Coherentix Labs Pvt Ltd. All rights reserved.</p>
           </div>
@@ -445,13 +515,11 @@
         <div>
           <NavBar />
           <Hero />
-          <Services />
-          <Industries />
-          <Portfolio />
-          <Expertise />
-          <Customers />
-          <Stories />
           <About />
+          <Expertise />
+          <Proposition />
+          <Stories />
+          <Customers />
           <Contact />
           <Footer />
         </div>
@@ -461,5 +529,7 @@
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
+
+
 </body>
 </html>
