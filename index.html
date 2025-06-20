@@ -458,12 +458,31 @@
 
     <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
 
+
       {/* Contact Info - 1/3 width */}
-      <div className="bg-white p-6 rounded-lg shadow-lg md:col-span-1 flex items-start space-x-4">
-        <i className="bi bi-envelope text-blue-600 text-2xl mt-1"></i>
-        <div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-1">Email Us</h3>
-          <p className="text-gray-600">contact@coherentix.com</p>
+      <div className="space-y-4 bg-white p-6 rounded-lg shadow-lg md:col-span-1">
+        {/* Address */}
+        <div className="flex items-start space-x-4">
+          <i className="bi bi-geo-alt text-blue-600 text-2xl mt-1"></i>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-1">Address</h3>
+            <p className="text-gray-600">
+              Coherentix Labs Pvt Ltd<br />
+              No. 17, 1st Main Road, 2nd Cross,<br />
+              Gopal Reddy Layout, Banaswadi,<br />
+              Bangalore North,<br />
+              Bangalore - 560043, Karnataka
+            </p>
+          </div>
+        </div>
+
+        {/* Email */}
+        <div className="flex items-start space-x-4">
+          <i className="bi bi-envelope text-blue-600 text-2xl mt-1"></i>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-1">Email Us</h3>
+            <p className="text-gray-600">contact@coherentix.com</p>
+          </div>
         </div>
       </div>
 
