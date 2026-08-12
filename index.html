@@ -1,610 +1,956 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coherentix Labs Pvt Ltd | Coherent Intelligent Systems, Expertly Crafted</title>
-  <meta name="description" content="Coherentix Labs is a global technology company delivering scalable, secure, and intelligent solutions across healthcare, industrial, and consumer domains." />
-  <meta name="keywords" content="Coherentix Labs, engineering solutions, AI product development, embedded systems, healthcare software, Bangalore startup, technology consulting" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.coherentix.com/" />
-  <link href="images/favicon.png" rel="icon">
-  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coherentix Labs | Engineering Partner for Medical, Industrial &amp; AI Systems</title>
+<meta name="description" content="Coherentix Labs is a Bangalore-based engineering company delivering compliant, scalable, and intelligent hardware and software systems for healthcare, industrial, and consumer domains.">
+<meta name="keywords" content="Coherentix Labs, engineering solutions, AI product development, embedded systems, healthcare software, Bangalore startup, technology consulting, FDA 510k, IEC 62304">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.coherentix.com/">
+<link href="images/favicon.png" rel="icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  :root{
+    --ink: #0A1728;
+    --ink-2: #12233B;
+    --ink-3: #1B324F;
+    --paper: #F1F4F2;
+    --paper-2: #E7ECE8;
+    --card: #FFFFFF;
+    --signal: #22B8A6;
+    --signal-dim: #9FE3D8;
+    --amber: #E4A23A;
+    --text: #16273E;
+    --text-muted: #56677A;
+    --text-on-ink: #E9EEF3;
+    --text-on-ink-muted: #93A4B8;
+    --line: rgba(22,39,62,0.10);
+    --line-ink: rgba(233,238,243,0.14);
+    --card-shadow: rgba(16,39,62,0.25);
+    --card-shadow-hover: rgba(16,39,62,0.35);
+    --radius: 4px;
+    --max: 1180px;
+    --serif-none: 1;
+    color-scheme: light;
+  }
+
+  html[data-theme="dark"]{
+    --ink: #060D18;
+    --ink-2: #0B1728;
+    --ink-3: #1C2E45;
+    --paper: #0C1826;
+    --paper-2: #091220;
+    --card: #101F32;
+    --text: #E9EEF3;
+    --text-muted: #92A2B5;
+    --line: rgba(233,238,243,0.10);
+    --card-shadow: rgba(0,0,0,0.45);
+    --card-shadow-hover: rgba(0,0,0,0.6);
+    color-scheme: dark;
+  }
+  html[data-theme="dark"] .titleblock .cell{
+    background:linear-gradient(160deg, #16283F, #0F1E30);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    transition:background .25s ease, color .25s ease;
+    font-family:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', system-ui, sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+    color:var(--text);
+  }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  ul{ margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; }
+  :focus-visible{ outline:2px solid var(--signal); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--signal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--signal);
+    display:inline-block;
+  }
+  .eyebrow.on-light{ color:#0E9184; }
+
+  /* ---------- NAV ---------- */
+  #topnav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,23,40,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-ink);
+  }
+  #topnav .bar{ display:flex; align-items:center; justify-content:space-between; height:66px; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand img{ width:28px; height:28px; }
+  .brand span{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:19px; color:#fff; letter-spacing:-0.01em; }
+  .brand span em{ font-style:normal; position:relative; display:inline-block; }
+  .brand span em .dot{
+    position:absolute; top:0.36em; left:50%; transform:translateX(-50%);
+    width:4px; height:4px; border-radius:50%; background:#FF3B30;
+  }
+  footer .fbrand em{ font-style:normal; position:relative; display:inline-block; }
+  footer .fbrand em .dot{
+    position:absolute; top:0.36em; left:50%; transform:translateX(-50%);
+    width:3.5px; height:3.5px; border-radius:50%; background:#FF3B30;
+  }
+  .navlinks{ display:flex; gap:2px; align-items:center; }
+  .navlinks a{
+    font-size:13.5px; font-weight:500; color:var(--text-on-ink-muted);
+    padding:10px 14px; border-radius:3px; transition:color .15s ease;
+  }
+  .navlinks a:hover{ color:#fff; }
+  .navcta{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:500;
+    color:var(--ink) !important; background:var(--signal);
+    padding:9px 16px !important; border-radius:3px; margin-left:8px;
+  }
+  .navcta:hover{ color:var(--ink) !important; background:var(--signal-dim); }
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; margin-left:10px; border-radius:6px;
+    background:rgba(255,255,255,0.06); border:1px solid var(--line-ink);
+    color:var(--text-on-ink-muted); transition:color .15s ease, border-color .15s ease;
+  }
+  .theme-toggle:hover{ color:#fff; border-color:var(--signal); }
+  .theme-toggle i{ font-size:14.5px; }
+  .theme-toggle-mobile{
+    display:flex; align-items:center; gap:10px; padding:14px 28px; font-size:14.5px;
+    color:var(--text-on-ink); border-bottom:1px solid var(--line-ink); width:100%; background:none; border-left:0; border-right:0; border-top:0; text-align:left;
+  }
+  .theme-toggle-mobile i{ color:var(--signal); font-size:15px; }
+  .hamburger{ display:none; background:none; border:0; padding:8px; }
+  .hamburger span{ display:block; width:22px; height:2px; background:#fff; margin:5px 0; }
+  #mobilemenu{
+    display:none; flex-direction:column; background:var(--ink-2);
+    border-top:1px solid var(--line-ink);
+  }
+  #mobilemenu a{ padding:14px 28px; font-size:14.5px; color:var(--text-on-ink); border-bottom:1px solid var(--line-ink); }
+  #mobilemenu.open{ display:flex; }
+
+  @media (max-width:900px){
+    .navlinks{ display:none; }
+    .hamburger{ display:block; }
+  }
+
+  /* ---------- HERO ---------- */
+  #home{
+    position:relative;
+    background:var(--ink);
+    color:var(--text-on-ink);
+    padding:104px 0 0 0;
+    overflow:hidden;
+  }
+  .blueprint-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line-ink) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-ink) 1px, transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse 85% 70% at 60% 20%, black 20%, transparent 78%);
+    mask-image:radial-gradient(ellipse 85% 70% at 60% 20%, black 20%, transparent 78%);
+    opacity:0.55;
+  }
+  .grid-signal{
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background:var(--signal); box-shadow:0 0 9px 2px var(--signal);
+    top:0; left:0; opacity:0;
+    transition:opacity .6s ease;
+    pointer-events:none; z-index:1;
+  }
+
+  .hero-inner{ position:relative; z-index:2; padding-bottom:30px; }
+  .hero-inner h1{
+    font-size:clamp(30px, 3.6vw, 46px);
+    line-height:1.1;
+    max-width:700px;
+    color:#fff;
+  }
+  .hero-inner h1 .accent{ color:var(--signal); }
+  .hero-inner .lede{
+    margin-top:16px; max-width:540px; font-size:15.5px; line-height:1.55; color:var(--text-on-ink-muted);
+  }
+  .hero-cta{ display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:500;
+    padding:12px 22px; border-radius:3px; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-solid{ background:var(--signal); color:var(--ink); }
+  .btn-solid:hover{ background:var(--signal-dim); }
+  .btn-ghost{ border-color:var(--line-ink); color:#fff; }
+  .btn-ghost:hover{ border-color:var(--signal); }
+
+  .titleblock{
+    position:relative; z-index:2;
+    padding:26px 0 40px;
+  }
+  .titleblock .wrap{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .titleblock .cell{
+    height:118px;
+    padding:16px 18px;
+    display:flex; flex-direction:column; gap:0;
+    font-family:'IBM Plex Mono', monospace;
+    background:linear-gradient(160deg, var(--ink-3), var(--ink-2));
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:10px;
+    box-shadow:0 14px 28px -12px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    overflow:hidden;
+  }
+  .titleblock .cell:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 34px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .titleblock .cell .k{
+    font-size:10px; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-on-ink-muted);
+    display:flex; align-items:center; gap:6px; white-space:nowrap; flex-shrink:0;
+  }
+  .titleblock .cell .k i{ color:var(--signal); font-size:12.5px; flex-shrink:0; }
+  .titleblock .cell .cell-body{ flex:1; display:flex; align-items:center; }
+  .titleblock .cell .v{
+    font-size:13.5px; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%;
+  }
+  .titleblock .cell .v.big{ font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:600; }
+  .titleblock .cell .v.big span{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:400; color:var(--text-on-ink-muted); margin-left:6px; }
+
+  .badge-row{ display:flex; gap:10px; align-items:flex-start; flex-wrap:nowrap; overflow:hidden; }
+  .domain-item{ display:flex; flex-direction:column; align-items:center; gap:5px; flex-shrink:0; }
+  .icon-badge{
+    width:34px; height:34px; border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    background:rgba(34,184,166,0.10); border:1px solid rgba(34,184,166,0.28);
+  }
+  .icon-badge i{ color:var(--signal); font-size:17px; }
+  .domain-item span{
+    font-family:'IBM Plex Mono', monospace; font-size:8.5px; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--text-on-ink-muted);
+  }
+  @media (max-width:820px){
+    .titleblock .wrap{ grid-template-columns:repeat(2,1fr); }
+  }
+
+  /* ---------- STANDARDS STRIP ---------- */
+  #standards{ padding:52px 0; border-bottom:1px solid var(--line); }
+  #standards .row{ display:flex; align-items:center; gap:28px; flex-wrap:wrap; justify-content:space-between; }
+  #standards .label{ font-size:13px; color:var(--text-muted); max-width:210px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; flex:1; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--text);
+    border:1px solid var(--line); padding:8px 13px; border-radius:3px;
+    background:var(--card);
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{ padding:96px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,38px); }
+  .section-head .desc{ margin-top:14px; color:var(--text-muted); font-size:16px; }
+  .alt{ background:var(--paper-2); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+  .about-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:36px; }
+  .about-card h3{ font-size:19px; margin-bottom:16px; }
+  .about-card p{ margin-bottom:14px; color:var(--text-muted); font-size:15px; }
+  .about-card p:last-child{ margin-bottom:0; }
+  .about-card strong{ color:var(--text); font-weight:600; }
+  @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- SERVICES ---------- */
+  .svc-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .svc-card{
+    background:var(--card); padding:32px 26px;
+    border:1px solid var(--line); border-radius:8px;
+    box-shadow:0 10px 22px -14px var(--card-shadow);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .svc-card:hover{ transform:translateY(-3px); box-shadow:0 16px 28px -14px var(--card-shadow-hover); }
+  .svc-card .idx{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--signal); }
+  .svc-card h3{ font-size:16.5px; margin:14px 0 10px; line-height:1.3; }
+  .svc-card p{ font-size:13.5px; color:var(--text-muted); }
+  @media (max-width:900px){ .svc-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .svc-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- VALUE STRIP ---------- */
+  .value-strip{ display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:52px; }
+  .value-item{
+    background:var(--card); padding:24px 20px;
+    border:1px solid var(--line); border-radius:8px;
+    box-shadow:0 10px 22px -14px var(--card-shadow);
+  }
+  .value-item i{ color:var(--signal); font-size:20px; }
+  .value-item h4{ font-family:'Space Grotesk',sans-serif; font-size:14px; margin:10px 0 6px; font-weight:600; }
+  .value-item p{ font-size:12.5px; color:var(--text-muted); line-height:1.5; }
+  @media (max-width:960px){ .value-strip{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- EXPERTISE ---------- */
+  .expertise-list{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
+  .exp-row{ display:grid; grid-template-columns:64px 220px 1fr; gap:28px; padding:34px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .exp-row .num{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--signal); padding-top:4px; }
+  .exp-row .titlecol{ display:flex; align-items:flex-start; gap:12px; }
+  .exp-row .titlecol i{ color:var(--signal); font-size:18px; margin-top:2px; }
+  .exp-row h3{ font-size:16.5px; line-height:1.35; }
+  .exp-row ul{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:8px 28px; }
+  .exp-row li{ font-size:14px; color:var(--text-muted); padding-left:16px; position:relative; }
+  .exp-row li::before{ content:"—"; position:absolute; left:0; color:var(--signal); }
+  @media (max-width:820px){
+    .exp-row{ grid-template-columns:1fr; gap:12px; }
+    .exp-row ul{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- ENGAGEMENT MODELS ---------- */
+  .model-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  .model-card{ background:var(--ink); color:var(--text-on-ink); border-radius:var(--radius); padding:36px; position:relative; overflow:hidden; }
+  .model-card::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--signal); }
+  .model-card i{ color:var(--signal); font-size:22px; }
+  .model-card h3{ color:#fff; font-size:19px; margin:14px 0 4px; }
+  .model-card .sub{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--signal-dim); margin-bottom:14px; display:block; }
+  .model-card p{ color:var(--text-on-ink-muted); font-size:14.5px; }
+  @media (max-width:820px){ .model-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- STORIES ---------- */
+  .featured{
+    background:var(--ink); color:var(--text-on-ink); border-radius:var(--radius);
+    padding:40px; margin-bottom:52px; display:grid; grid-template-columns:180px 1fr; gap:32px;
+  }
+  .featured .tag{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--signal); border:1px solid var(--line-ink); padding:8px 12px; border-radius:3px; text-align:center; height:fit-content; }
+  .featured p{ color:var(--text-on-ink-muted); font-size:15px; line-height:1.7; }
+  .featured p strong{ color:#fff; }
+  @media (max-width:760px){ .featured{ grid-template-columns:1fr; } }
+
+  .story-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .story-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .story-card .head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .story-card i{ color:var(--signal); font-size:17px; }
+  .story-card h4{ font-size:15px; }
+  .story-card ul{ list-style:none; }
+  .story-card li{ font-size:13.5px; color:var(--text-muted); padding:6px 0 6px 16px; border-top:1px solid var(--line); position:relative; }
+  .story-card li:first-child{ border-top:none; }
+  .story-card li::before{ content:"—"; position:absolute; left:0; color:var(--signal); }
+  @media (max-width:960px){ .story-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:600px){ .story-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- PORTFOLIO / CUSTOMERS ---------- */
+  .customer-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .customer-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:34px; text-align:center; }
+  .customer-card .cat{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; }
+  .customer-card img{ margin:0 auto; max-height:46px; object-fit:contain; }
+  @media (max-width:640px){ .customer-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1.5fr; gap:28px; }
+  .contact-info{ background:var(--ink); color:var(--text-on-ink); border-radius:var(--radius); padding:34px; }
+  .contact-info .item{ display:flex; gap:14px; margin-bottom:26px; }
+  .contact-info .item:last-child{ margin-bottom:0; }
+  .contact-info i{ color:var(--signal); font-size:19px; margin-top:2px; }
+  .contact-info h4{ color:#fff; font-size:14.5px; margin-bottom:6px; }
+  .contact-info p{ color:var(--text-on-ink-muted); font-size:14px; line-height:1.6; }
+  .contact-form{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:34px; }
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted); margin-bottom:7px; }
+  .field input, .field textarea{
+    width:100%; border:1px solid var(--line); border-radius:3px; padding:12px 14px;
+    font-family:inherit; font-size:14.5px; background:var(--paper); color:var(--text);
+  }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--signal); background:var(--card); }
+  .submit-btn{ width:100%; background:var(--ink); color:#fff; border:0; padding:15px; border-radius:3px; font-family:'IBM Plex Mono', monospace; font-size:13.5px; font-weight:500; }
+  .submit-btn:hover{ background:var(--ink-3); }
+  .form-note{ font-size:12px; color:var(--text-muted); margin-top:10px; }
+  @media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; } }
+
+  #success-toast{
+    display:none; position:fixed; bottom:28px; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:#fff; padding:14px 24px; border-radius:4px;
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; z-index:200;
+    border-left:3px solid var(--signal);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--ink); color:var(--text-on-ink-muted); padding:16px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer .fbrand{ display:flex; align-items:center; gap:8px; }
+  footer .fbrand img{ width:18px; height:18px; }
+  footer .fbrand span{ font-family:'Space Grotesk', sans-serif; color:#fff; font-weight:600; font-size:14.5px; }
+  footer .flinks{ display:flex; gap:20px; font-size:12.5px; }
+  footer .flinks a:hover{ color:#fff; }
+  footer .copyright{ font-family:'IBM Plex Mono', monospace; font-size:11px; margin-top:5px; color:var(--text-on-ink-muted); }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
 </head>
 <body>
-  <div id="root"></div>
-  <script type="text/babel">
-    const NavBar = () => {
-      const [menuOpen, setMenuOpen] = React.useState(false);
 
-      const toggleMenu = () => setMenuOpen(!menuOpen);
-      const closeMenu = () => setMenuOpen(false);
+<nav id="topnav">
+  <div class="wrap bar">
+    <a href="#home" class="brand">
+      <img src="images/logo.png" alt="Coherentix Labs">
+      <span>Coherent<em>ı<i class="dot"></i></em>x <span style="color:var(--text-on-ink-muted); font-weight:500; font-size:13px;">Labs</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#stories">Success Stories</a>
+      <a href="#customers">Customers</a>
+      <a href="#contact" class="navcta">Start a project</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="bi bi-moon-stars-fill"></i>
+      </button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="mobilemenu">
+    <a href="#about">About</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#services">Services</a>
+    <a href="#stories">Success Stories</a>
+    <a href="#customers">Customers</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle-mobile" id="themeToggleMobile">
+      <i class="bi bi-moon-stars-fill"></i> <span id="themeToggleMobileLabel">Switch to dark mode</span>
+    </button>
+  </div>
+</nav>
 
-      return (
-        <nav className="bg-white text-blue-400 fixed w-full z-10 top-0 shadow-md" style={{ color: "#5BBBFF" }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16 items-center">
+<section id="home">
+  <div class="blueprint-grid" aria-hidden="true"></div>
 
-              {/* Logo + Name */}
-              <div className="flex items-center space-x-2">
-                <img src="images/logo.png" alt="Coherentix Labs logo" style={{ width: "40px", height: "40px" }} />
-                <div className="text-2xl font-bold">Coherent<span style={{ color: "#FF0000" }}>i</span>x</div>
-              </div>
+  <div class="grid-signal" id="gridSignal" aria-hidden="true"></div>
 
-              {/* Desktop Menu */}
-              <div className="hidden md:flex space-x-8 font-semibold">
-                <a href="#home" className="hover:text-blue-800" onClick={closeMenu}>Home</a>
-                <a href="#about" className="hover:text-blue-800" onClick={closeMenu}>About</a>
-                <a href="#expertise" className="hover:text-blue-800" onClick={closeMenu}>Expertise</a>
-                <a href="#proposition" className="hover:text-blue-800" onClick={closeMenu}>Value Proposition</a>
-                <a href="#stories" className="hover:text-blue-800" onClick={closeMenu}>Success Stories</a>
-                <a href="#customers" className="hover:text-blue-800" onClick={closeMenu}>Customers</a>
-                <a href="#contact" className="hover:text-blue-800" onClick={closeMenu}>Contact</a>
-              </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">COHERENTIX LABS — BANGALORE, INDIA</div>
+    <h1>Coherent intelligent systems, <span class="accent">expertly crafted.</span></h1>
+    <p class="lede">We're an engineering partner for teams building regulated, hardware-grade products — medical devices, industrial systems, and AI-enabled software — from first prototype through FDA and IEC certification.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-solid">Start a project →</a>
+      <a href="#expertise" class="btn btn-ghost">See our expertise</a>
+    </div>
+  </div>
 
-              {/* Hamburger Icon */}
-              <div className="md:hidden">
-                <button className="focus:outline-none" onClick={toggleMenu}>
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Menu (shows when menuOpen is true) */}
-          {menuOpen && (
-            <div
-              className={`
-                md:hidden bg-white text-blue-600 px-4 py-4 space-y-2 shadow-md
-                transition-all duration-300 overflow-hidden
-                ${menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
-              `}
-            >
-              <a href="#home" className="block hover:text-blue-800" onClick={closeMenu}>Home</a>
-              <a href="#about" className="block hover:text-blue-800" onClick={closeMenu}>About</a>
-              <a href="#expertise" className="block hover:text-blue-800" onClick={closeMenu}>Expertise</a>
-              <a href="#proposition" className="block hover:text-blue-800" onClick={closeMenu}>Value Proposition</a>
-              <a href="#stories" className="block hover:text-blue-800" onClick={closeMenu}>Success Stories</a>
-              <a href="#customers" className="block hover:text-blue-800" onClick={closeMenu}>Customers</a>
-              <a href="#contact" className="block hover:text-blue-800" onClick={closeMenu}>Contact</a>
-            </div>
-          )}
-        </nav>
-      );
-    };
-
-
-    const Hero = () => {
-      return (
-        <section id="home" className="bg-gradient-to-r from-[#5BBBFF] to-[#3F60A4] text-white h-screen flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-extrabold">Coherentix</h1>
-            <p className="mt-4 text-lg md:text-xl"><span class="text-white font-bold">Coherent I</span><span class="text-gray-300">ntelligent Systems, E</span><span class="text-white font-bold">x</span><span class="text-gray-300">pertly Crafted!</span></p>
-            <a href="#about" className="mt-4 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Get Started</a>
-          </div>
-        </section>
-      );
-    };
-
-    const Proposition = () => {
-      const propositions = [
-        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "bi-buildings-fill" },
-        { title: "Rapid Prototyping of Complex Design to POC for any Industry", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "bi-lightbulb-fill" },
-        { title: "Medical Domain Expertise", desc: "Our team has built several advanced end-to-end solutions for medical devices and healthcare systems", icon: "bi-clipboard2-pulse-fill" },
-        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "bi-clipboard-check-fill" },
-        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "bi-shield-fill-check" },
-      ];
-      return (
-        <section id="proposition" className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Value Proposition</h2>
-            <div className="mt-12 grid grid-cols-1 gap-8">
-		      <div className="bg-white p-12 rounded-lg shadow-lg">
-		        {propositions.map((proposition, index) => (
-		          <div key={index} className="mb-6">
-		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${proposition.icon} me-2`}></i>{proposition.title}</h3>
-		            <p className="mt-2 text-gray-600">{proposition.desc}</p>
-		          </div>
-		        ))}
-		      </div>
-		    </div>
-          </div>
-        </section>
-      );
-    };
-
-    const Services = () => {
-      const services = [
-        { title: "Hardware and Embedded Engineering", desc: "Custom hardware and embedded systems tailored to your needs.", icon: "🔧" },
-        { title: "Software, Cloud and Data Engineering", desc: "Scalable software, cloud, and data infrastructure.", icon: "💻" },
-        { title: "Engineering AI application, Automation", desc: "Intelligent AI applications and automation solutions.", icon: "🧠" },
-        { title: "Test Engineering", desc: "Comprehensive testing for reliable operations.", icon: "✅" },
-      ];
-      const differences = [
-        { title: "Professional Engineering", desc: "Our experience with industry leaders like GE, Philips, HP, Wipro, Medtech startups brings a proven standard of engineering discipline and quality to your project.", icon: "bi-buildings-fill" },
-        { title: "From Concept to Prototype", desc: "We help startups transform their MVP into a ready-to-market product by offering custom hardware and software development for startups. Our engineers can augment your in-house team or take over the entire development process.", icon: "bi-lightbulb-fill" },
-        { title: "Expertise in Safety & Compliance", desc: "We apply our deep knowledge of IEC and ISO standards from the medical field to engineer functionally safe products for healthcare, industrial, and automotive applications.", icon: "bi-clipboard-check-fill" },
-        { title: "Build Secure and Saclable Software", desc: "Our expertise in systems design, architecting complex, secure and reliable software platforms for data intensive applications.", icon: "bi-shield-fill-check" },
-      ];
-      const models = [
-        { title: "Fixed Price Model", subtitle: "Predictable Budget, Guaranteed Results", desc: "For projects with clear goals and requirements, our Fixed Price model offers maximum predictability. We agree on the scope, price, and timeline before we start. This model minimizes your management effort and gives you a dedicated team committed to delivering your product on time and on budget.", icon: "bi-coin" },
-        { title: "Time & Materials Model", subtitle: "Maximum Flexibility, Full Control", desc: "Ideal for both long-term partnerships and projects involving research and development, this model offers ultimate adaptability. You pay for our team's time and expertise at a set hourly rate, giving you the freedom to evolve the project scope, requirements, and features as needed. This pay-as-you-go approach ensures you have complete control over the budget and project direction at all times.", icon: "bi-clock-fill" },
-      ];
-      return (
-        <section id="services" className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Services</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-semibold text-blue-500">{service.title}</h3>
-                  <p className="mt-2 text-gray-600">{service.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <br/>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Value Proposition</h2>
-            <div className="mt-12 grid grid-cols-1 gap-8">
-		      <div className="bg-white p-12 rounded-lg shadow-lg">
-		        {differences.map((difference, index) => (
-		          <div key={index} className="mb-6">
-		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${difference.icon} me-2`}></i>{difference.title}</h3>
-		            <p className="mt-2 text-gray-600">{difference.desc}</p>
-		          </div>
-		        ))}
-		      </div>
-		    </div>
-          </div>
-          <br/>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Engagement Models</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                {models.map((model, index) => (
-		          <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-		            <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${model.icon} me-2`}></i>{model.title}</h3>
-		            <p className="text-l font-semibold text-gray-900">{model.subtitle}</p>
-		            <p className="mt-2 text-gray-600">{model.desc}</p>
-		          </div>
-		        ))}
-
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-    const Industries = () => {
-      const industries = ["Healthcare", "Consumer", "Manufacturing"];
-      return (
-        <section id="industries" className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Industries We Serve</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {industries.map((industry, index) => (
-                <div key={index} className="bg-blue-600 text-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold">{industry}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-    const Portfolio = () => {
-      const projects = [
-        { name: "Medical Devices & Healthcare Solutions", desc: "Advanced solutions for medical devices and healthcare systems.", img: "./images/portfolio-medical.png" },
-        { name: "Industrial & Automotive Products & Solutions", desc: "Innovative products and solutions for industrial and automotive sectors.", img: "./images/portfolio-industrial.png" },
-        { name: "AI & Digital Transformation", desc: "AI-driven solutions for digital transformation.", img: "./images/portfolio-ai.png" },
-      ];
-      return (
-        <section id="portfolio" className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Portfolio</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img src={project.img} alt={project.name} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-blue-500">{project.name}</h3>
-                    <p className="mt-2 text-gray-600">{project.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-    const Expertise = () => {
-      const expertise = [
-        { category: "Medical/Healthcare Product Engineering",
-          img: "./images/portfolio-medical.png",
-          icon: "bi-heart-pulse-fill",
-          list:
-            ["Medical devices and solutions from initial concept through market launch",
-             "Full FDA regulatory compliance and IEC 62304 for Medical Safety throughout the design and development process",
-             "Expertise with designing products and solutions that comply with IEC 60601, ISO 14971, ISO 27001 standards",
-             "Hands-on experience with patient monitors, wearable medical devices, infusion pumps, implant monitors",
-             "US FDA 510K navigation and designing systems for IEC and ISO standards for device functional performance and safety"
-            ]
-        },
-        { category: "Rapid Innovation",
-          img: "./images/portfolio-prototype.png",
-          icon: "bi-lightning-charge-fill",
-          list:
-            ["Rapid prototyping and proof-of-concept development of ideas",
-             "Engineering support for early stage start-ups"
-            ]
-        },
-        { category: "Industrial and Automotive Product Engineering",
-          img: "./images/portfolio-industrial.png",
-          icon: "bi-car-front-fill",
-          list:
-            ["Products and solutions for Industrial systems complying with IEC 61508",
-             "Automotive systems complying with ISO 26262 for Automotive applications ensuring functional safety and performance"
-            ]
-        },
-        { category: "Engineering Consulting Services",
-          img: "./images/portfolio-consultancy.png",
-          icon: "bi-briefcase-fill",
-          list:
-            ["Stategic Engineering, Technical leadership for Startups",
-             "Medical Device Consulting - Engineering support for IEC and ISO safety and performance standards compliance, IEC 62304 audit preparation, Technical support for US FDA 510K, CDSCO filing.",
-             "Regulatory guidance",
-             "Flexible Business and Intellectual Property arrangements that suit customer expectations"
-            ]
-        },
-        { category: "AI enabled products and Services (under development)",
-          img: "./images/portfolio-ai.png",
-          icon: "bi-robot",
-          list:
-            ["AI enabled Anomaly detection service platform for detecting, analyzing and notification of anomolous events",
-             "AI enabled Test Engineering platform.",
-             "AI enabled Compliance and Document management system for regulated industries."
-            ]
-        },
-        { category: "Core Technologies",
-          img: "./images/portfolio-coretech.png",
-          icon: "bi-tools",
-          list:
-            ["Programming Languages: C, C++, Java, NodeJS, Angular and other software tech stacks and databases",
-             "AI/ML Expertise: Knowledge and understanding of AI, Deep Learning and LLM based applications, Agentic AI applications, RAG based knowledge systems"
-            ]
-        }
-      ];
-      return (
-        <section id="expertise" className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Expertise</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {expertise.map((expertise, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                  <img src={expertise.img} alt={expertise.category} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${expertise.icon} me-2`}></i>{expertise.category}</h3>
-                    <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
-                      {expertise.list.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-
-    const Customers = () => {
-      const customers = [
-        { category: "Medical", name: "Nesa Medtech Private Limited", img: "./images/customer-nesa.png" },
-        { category: "Consumer/Industrial", name: "DrinkPrime", img: "./images/customer-drinkprime.png" },
-      ];
-      return (
-        <section id="customers" className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Customers</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {customers.map((customer, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                  <h3 className="text-xl font-semibold text-blue-500">{customer.category}</h3>
-                  <img src={customer.img} alt={customer.name} className="mx-auto mt-4 h-12 object-contain" onError={(e) => { e.target.src = "https://via.placeholder.com/150x50?text=" + customer.name; }} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-      );
-    };
-
-    const Stories = () => {
-      const desc = "The team developed a comprehensive wearable IoT medical device solution that included the complete data intensive software infrastructure for remote patient monitoring. This project included development of a centralized command centre platform for monitoring patient events across several fixed and mobile healthcare sites with advanced event disposition and triaging, reporting and data analysis capabilities. Our involvement spanned the entire product lifecycle - from initial market research and engineering design through FDA clearance, standards compliance testing, and successful 510(K) submissions for multiple products in the portfolio.";
-
-      const stories = [
-        { category: "Healthcare and Medtech",
-          icon: "bi-mouse3-fill",
-          list:
-            ["Custom healthcare software development services to technology startups working on medical devices",
-             "Vital signs monitors, wearable patient monitors",
-             "Infusion Pumps",
-             "Implant Programmers and Monitors",
-             "Remote Patient Monitoring Software Platforms",
-             "RF Ablasion System (Nesa Medtech)",
-             "Many developed from concept, engineering, regulatory clearance to production level"
-            ]
-        },
-        { category: "Industrial Automation",
-          icon: "bi-diagram-3-fill",
-          list:
-            ["Consumer and Industrial grade RO system (Drinkprime)",
-             "Industry 4.0 solutions, factory floor automation systems and supply chain.",
-             "Predective maintainance using AI, sensors."
-            ]
-        },
-        { category: "IOT and Wearables",
-          icon: "bi-watch",
-          list:
-            ["Wearable multi-parameter Patient monitoring device (Ten3T)",
-             "Custom Multi-sensor IOT hardware platform."
-            ]
-        },
-        { category: "Networking and Communication",
-          icon: "bi-hdd-network-fill",
-          list:
-            ["Layer-2 and Layer-3 Networking Protocol Stack.",
-             "Cloud architecture"
-            ]
-        },
-        { category: "Cloud and Platform Engineering",
-          icon: "bi-clouds-fill",
-          list:
-            ["Linux BSPs, RTOS for custom hardware",
-             "System design for Data intensive applications, microservices, multitenant, distributed and collaborative systems.",
-             "Architecting high performance, data intensive applications with microservices, Docker, Kubernetes (e.g., Remote Patient Monitoring)",
-             "Lead Re-architecture of legacy software platforms with modern technologies."
-            ]
-        },
-        { category: "Embedded Systems",
-          icon: "bi-cpu-fill",
-          list:
-            ["Embedded hardware and firmware on Microcontrollers, ARM and MIPS for Industrial Automation and products",
-             "Complex applications and software stack for RTOS, Linux and Unix kernel, Embedded Systems for several products"
-            ]
-        }
-      ];
-      return (
-        <section id="stories" className="py-16 bg-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">Our Success Stories</h2>
-            <div className="mt-12">
-              <p><b>Featured Project:</b> {desc}</p>
-            </div>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {stories.map((story, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-                  <h3 className="text-xl font-semibold text-blue-500"><i class={`bi ${story.icon} me-2`}></i>{story.category}</h3>
-                  <ul className="mt-4 list-disc list-outside pl-5 text-left text-gray-700">
-                    {story.list.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-
-    const About = () => {
-      return (
-        <section id="about" className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center text-gray-500">About Us</h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-people-fill text-blue-500 mr-2"></i>Who We Are</h3>
-                <div className="text-gray-700">
-                <p class="mb-4" >
-                  Coherentix Labs is a global technology company founded by a collective of seasoned engineers and consultants with over
-                  <strong> 150 years of combined experience</strong>. Our roots lie in deep product engineering expertise across embedded systems,
-                  software platforms, and hardware solutions.
-                </p>
-                <p class="mb-4">
-                  We bring together a unique blend of <strong>hardware and software proficiency</strong>, operating at the intersection of
-                  <em> Embedded Systems, Cloud, Data, and Artificial Intelligence</em>. Our team has successfully built and delivered products across
-                  domains such as <strong>medical devices</strong>, <strong>industrial automation</strong>, <strong>networking infrastructure</strong> and <strong>healthcare platforms</strong>.
-                </p>
-                <p>
-                  At our core, we are engineers who understand not just technology, but the <strong>art of building reliable, scalable,
-                  and intelligent systems</strong> that work in the real world.
-                </p>
-                </div>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-semibold text-blue-500 mb-4"><i class="bi bi-person-workspace text-blue-500 mr-2"></i>What We Do</h3>
-                <div className="text-gray-700">
-                <p class="mb-4">
-                  We help our clients <strong>turn ideas into intelligent, compliant, and market-ready products</strong>. Whether it's a startup
-                  or an enterprise, our focus is on enabling innovation through engineering precision and deep domain understanding.
-                </p>
-                <p class="mb-4">
-                  Our services span the full product development lifecycle—from <strong>concept and prototyping</strong> to
-                  <strong> regulatory-compliant deployment</strong>, particularly in complex domains like <strong>medical and healthcare</strong>.
-                  We are proficient in navigating global standards like <em>US FDA 510K, IEC 60601, IEC 62304, and ISO 14971</em>.
-                </p>
-                <p>
-                  Beyond healthcare, we design <strong>next-generation connected solutions</strong> for
-                  <strong> industrial automation</strong>, <strong>automotive systems</strong> and <strong>consumer electronics </strong>
-                  leveraging smart technologies to drive transformation and value.
-                </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    };
-
-    const Contact = () => {
-
-      const handleFormSubmit = (e) => {
-        e.preventDefault(); // stop form submission until validation passes
-
-        const name = document.getElementById("name-field").value.trim();
-        const email = document.getElementById("email-field").value.trim();
-        const message = document.getElementById("message-field").value.trim();
-
-        // Basic email format check
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        // Validation
-        if (!name || !email || !message) {
-          alert("Please fill your name, email address and message before sending.");
-          return;
-        }
-
-        if (!emailRegex.test(email)) {
-          alert("Please enter a valid email address.");
-          return;
-        }
-
-        // If validation passes → submit form inside iframe
-        document.getElementById("contact-form").submit();
-
-        // Show success popup
-        setTimeout(() => {
-          document.getElementById("success-popup").style.display = "block";
-
-          setTimeout(() => {
-            document.getElementById("success-popup").style.display = "none";
-            document.getElementById("contact-form").reset();
-          }, 4000);
-        }, 1000);
-      };
-
-      return (
-
-
-<section id="contact" className="py-16 bg-gray-100">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-3xl font-bold text-center text-gray-500">Get in Touch</h2>
-
-    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-      {/* Contact Info - 1/3 width */}
-      <div className="space-y-4 bg-white p-6 rounded-lg shadow-lg md:col-span-1">
-        {/* Address */}
-        <div className="flex items-start space-x-4">
-          <i className="bi bi-geo-alt text-blue-600 text-2xl mt-1"></i>
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-1">Address</h3>
-            <p className="text-gray-600">
-              <p className="font-semibold">Coherentix Labs Pvt. Ltd.</p>
-              No. 17, 1<sup>st</sup> Main, 2<sup>nd</sup> Cross,<br />
-              Gopal Reddy Layout, Banaswadi,<br />
-              Bangalore - 560043, Karnataka.
-            </p>
-          </div>
-        </div>
-
-        {/* Email */}
-        <div className="flex items-start space-x-4">
-          <i className="bi bi-envelope text-blue-600 text-2xl mt-1"></i>
-          <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-1">Email Us</h3>
-            <p className="text-gray-600">contact@coherentix.com</p>
+  <div class="titleblock">
+    <div class="wrap">
+      <div class="cell">
+        <div class="k"><i class="bi bi-award-fill"></i>Combined Experience</div>
+        <div class="cell-body"><div class="v big">150+<span>years</span></div></div>
+      </div>
+      <div class="cell">
+        <div class="k"><i class="bi bi-diagram-3-fill"></i>Domains</div>
+        <div class="cell-body">
+          <div class="badge-row">
+            <div class="domain-item"><div class="icon-badge" title="Medical"><i class="bi bi-heart-pulse-fill"></i></div><span>Medical</span></div>
+            <div class="domain-item"><div class="icon-badge" title="Industrial"><i class="bi bi-gear-fill"></i></div><span>Industrial</span></div>
+            <div class="domain-item"><div class="icon-badge" title="AI"><i class="bi bi-cpu-fill"></i></div><span>AI</span></div>
           </div>
         </div>
       </div>
+      <div class="cell">
+        <div class="k"><i class="bi bi-buildings-fill"></i>Engineers from</div>
+        <div class="cell-body"><div class="v" title="GE · Philips · HP · Wipro">GE · Philips · HP · Wipro</div></div>
+      </div>
+      <div class="cell">
+        <div class="k"><i class="bi bi-patch-check-fill"></i>Compliance</div>
+        <div class="cell-body"><div class="v" title="FDA 510(k) · IEC · ISO">FDA 510(k) · IEC · ISO</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* Contact Form - 2/3 width */}
-      <div className="bg-white p-9 rounded-lg shadow-lg md:col-span-2">
-        <div id="success-popup" style={{
-		  display: "none",
-		  position: "fixed",
-		  top: "30%",
-		  left: "50%",
-		  transform: "translate(-50%, -50%)",
-		  "background-color": "#5BBBFF",
-		  color: "white",
-		  padding: "20px 40px",
-		  "border-radius": "12px",
-		  "box-shadow": "0 0 20px rgba(0,0,0,0.2)",
-		  "font-size": "1.2rem",
-		  "z-index": "9999"
-		}}>Your message has been sent successfully!</div>
-        <iframe name="hidden_iframe" style={{display: "none"}}></iframe>
-        <form id="contact-form" action="https://formsubmit.co/ebith@coherentix.com" method="post" target="hidden_iframe" onSubmit={handleFormSubmit}>
-          <div className="space-y-4">
-            <input type="text" name="name" id="name-field" placeholder="Your Name" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-            <input type="email" name="email" id="email-field" placeholder="Your Email" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600" />
-            <textarea name="message" id="message-field" placeholder="Your Message" rows="4" className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
-            <button type="submit" className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-500" >Send Message</button>
-            <input type="text" name="_honey" style={{display: "none"}}/>
-            <input type="hidden" name="_captcha" value="false"/>
-            <input type="hidden" name="_template" value="table"/>
-          </div>
-        </form>
+<section id="standards">
+  <div class="wrap">
+    <div class="row">
+      <div class="label eyebrow on-light" style="margin-bottom:0;">Standards we engineer to</div>
+      <div class="chips">
+        <span class="chip">IEC 60601</span>
+        <span class="chip">IEC 62304</span>
+        <span class="chip">ISO 14971</span>
+        <span class="chip">ISO 27001</span>
+        <span class="chip">ISO 26262</span>
+        <span class="chip">IEC 61508</span>
+        <span class="chip">US FDA 510(k)</span>
+        <span class="chip">CDSCO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">About Coherentix</div>
+      <h2>Engineering depth, real-world delivery.</h2>
+      <p class="desc">Founded by a collective of seasoned engineers, we operate at the intersection of embedded systems, cloud, data, and AI — building products that have to work in the real world, not just the demo.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <h3><i class="bi bi-people-fill" style="color:var(--signal); margin-right:8px;"></i>Who we are</h3>
+        <p>Coherentix Labs is a global technology company founded by a collective of seasoned engineers and consultants with over <strong>150 years of combined experience</strong>. Our roots lie in deep product engineering expertise across embedded systems, software platforms, and hardware.</p>
+        <p>We bring together <strong>hardware and software proficiency</strong> in one team, and have delivered products across <strong>medical devices</strong>, <strong>industrial automation</strong>, <strong>networking infrastructure</strong>, and <strong>healthcare platforms</strong>.</p>
+        <p>At our core, we're engineers who understand not just technology, but the discipline of building <strong>reliable, scalable, and intelligent systems</strong>.</p>
+      </div>
+      <div class="about-card reveal">
+        <h3><i class="bi bi-person-workspace" style="color:var(--signal); margin-right:8px;"></i>What we do</h3>
+        <p>We help clients <strong>turn ideas into intelligent, compliant, market-ready products</strong> — for startups and enterprises alike — through engineering precision and deep domain understanding.</p>
+        <p>Our services span the full lifecycle, from <strong>concept and prototyping</strong> to <strong>regulatory-compliant deployment</strong>, particularly in medical and healthcare, where we navigate <em>US FDA 510(k), IEC 60601, IEC 62304, and ISO 14971</em>.</p>
+        <p>Beyond healthcare, we design connected solutions for <strong>industrial automation</strong>, <strong>automotive systems</strong>, and <strong>consumer electronics</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">What we build</div>
+      <h2>Varied engineering disciplines, one team.</h2>
+      <p class="desc">Most partners hand you off between hardware, software, and compliance specialists. We keep the same engineers across all three.</p>
+    </div>
+    <div class="svc-grid reveal">
+      <div class="svc-card"><div class="idx">01</div><h3>Hardware &amp; Embedded Engineering</h3><p>Custom hardware and embedded systems, from schematic to firmware, tailored to the product's real constraints.</p></div>
+      <div class="svc-card"><div class="idx">02</div><h3>Software, Cloud &amp; Data Engineering</h3><p>Scalable software platforms, cloud architecture, and data infrastructure for data-intensive applications.</p></div>
+      <div class="svc-card"><div class="idx">03</div><h3>AI Applications &amp; Automation</h3><p>Applied AI, LLM-based and agentic applications, and automation built to fit inside regulated workflows.</p></div>
+      <div class="svc-card"><div class="idx">04</div><h3>Test Engineering</h3><p>Comprehensive test strategy and execution so what ships is what was actually verified.</p></div>
+    </div>
+
+    <div class="value-strip reveal">
+      <div class="value-item"><i class="bi bi-buildings-fill"></i><h4>Professional engineering</h4><p>Discipline drawn from GE, Philips, HP, Wipro, and medtech startups.</p></div>
+      <div class="value-item"><i class="bi bi-lightbulb-fill"></i><h4>Concept to prototype</h4><p>We take an MVP to market-ready, or augment your in-house team.</p></div>
+      <div class="value-item"><i class="bi bi-clipboard2-pulse-fill"></i><h4>Medical domain depth</h4><p>End-to-end solutions for medical devices and healthcare systems.</p></div>
+      <div class="value-item"><i class="bi bi-clipboard-check-fill"></i><h4>Safety &amp; compliance</h4><p>IEC and ISO standards applied to healthcare, industrial, and automotive.</p></div>
+      <div class="value-item"><i class="bi bi-shield-fill-check"></i><h4>Secure, scalable software</h4><p>Systems design for complex, reliable, data-intensive platforms.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">Capability index</div>
+      <h2>Where we go deep.</h2>
+      <p class="desc">Six domains where our team has shipped production systems, not pilots.</p>
+    </div>
+    <div class="expertise-list reveal">
+
+      <div class="exp-row">
+        <div class="num">§1</div>
+        <div class="titlecol"><i class="bi bi-heart-pulse-fill"></i><h3>Medical &amp; Healthcare Product Engineering</h3></div>
+        <ul>
+          <li>Medical devices from initial concept through market launch</li>
+          <li>Full FDA regulatory compliance and IEC 62304 for medical safety</li>
+          <li>Designs compliant with IEC 60601, ISO 14971, ISO 27001</li>
+          <li>Hands-on with patient monitors, wearables, infusion pumps, implant monitors</li>
+          <li>US FDA 510(k) navigation and IEC/ISO safety &amp; performance design</li>
+        </ul>
+      </div>
+
+      <div class="exp-row">
+        <div class="num">§2</div>
+        <div class="titlecol"><i class="bi bi-lightning-charge-fill"></i><h3>Rapid Innovation</h3></div>
+        <ul>
+          <li>Rapid prototyping and proof-of-concept development</li>
+          <li>Engineering support for early-stage start-ups</li>
+        </ul>
+      </div>
+
+      <div class="exp-row">
+        <div class="num">§3</div>
+        <div class="titlecol"><i class="bi bi-car-front-fill"></i><h3>Industrial &amp; Automotive Product Engineering</h3></div>
+        <ul>
+          <li>Industrial systems complying with IEC 61508</li>
+          <li>Automotive systems complying with ISO 26262 for functional safety</li>
+        </ul>
+      </div>
+
+      <div class="exp-row">
+        <div class="num">§4</div>
+        <div class="titlecol"><i class="bi bi-briefcase-fill"></i><h3>Engineering Consulting Services</h3></div>
+        <ul>
+          <li>Strategic engineering &amp; technical leadership for startups</li>
+          <li>Medical device consulting — IEC 62304 audit prep, FDA 510(k), CDSCO filing support</li>
+          <li>Regulatory guidance</li>
+          <li>Flexible business and IP arrangements</li>
+        </ul>
+      </div>
+
+      <div class="exp-row">
+        <div class="num">§5</div>
+        <div class="titlecol"><i class="bi bi-robot"></i><h3>AI-Enabled Products &amp; Services <span class="mono" style="font-size:11px; color:var(--text-muted); font-weight:400;">(in development)</span></h3></div>
+        <ul>
+          <li>Anomaly detection platform for event analysis and notification</li>
+          <li>AI-enabled test engineering platform</li>
+          <li>AI-enabled compliance and document management for regulated industries</li>
+        </ul>
+      </div>
+
+      <div class="exp-row">
+        <div class="num">§6</div>
+        <div class="titlecol"><i class="bi bi-tools"></i><h3>Core Technologies</h3></div>
+        <ul>
+          <li>C, C++, Java, Node.js, Angular, and modern data stacks</li>
+          <li>AI/ML: deep learning, LLM applications, agentic AI, RAG knowledge systems</li>
+        </ul>
       </div>
 
     </div>
   </div>
 </section>
 
+<section id="models" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">How we engage</div>
+      <h2>Two ways to work together.</h2>
+    </div>
+    <div class="model-grid reveal">
+      <div class="model-card">
+        <i class="bi bi-coin"></i>
+        <h3>Fixed Price</h3>
+        <span class="sub">Predictable budget, guaranteed results</span>
+        <p>For projects with clear scope, we agree on scope, price, and timeline up front. Minimal management effort on your end, with a dedicated team committed to delivering on time and on budget.</p>
+      </div>
+      <div class="model-card">
+        <i class="bi bi-clock-fill"></i>
+        <h3>Time &amp; Materials</h3>
+        <span class="sub">Maximum flexibility, full control</span>
+        <p>Built for long-term partnerships and R&amp;D-heavy work. You pay for time and expertise at a set hourly rate, free to evolve scope and features as the project develops.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="stories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">Success stories</div>
+      <h2>Shipped, not just designed.</h2>
+    </div>
 
-      );
-    };
+    <div class="featured reveal">
+      <div class="tag">FEATURED<br>PROJECT</div>
+      <p><strong>Remote patient monitoring platform.</strong> We developed a comprehensive wearable IoT medical device solution, including the complete data-intensive software infrastructure for remote patient monitoring — plus a centralized command-centre platform for monitoring patient events across fixed and mobile healthcare sites, with event disposition, triaging, reporting, and analysis. Our involvement spanned the full product lifecycle: market research, engineering design, FDA clearance, standards compliance testing, and successful 510(k) submissions for multiple products in the portfolio.</p>
+    </div>
 
-    const Footer = () => {
-      return (
-        <footer className="bg-gradient-to-r from-[#5BBBFF] to-[#3F60A4] text-white py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>Copyright © 2025 Coherentix Labs Pvt Ltd. All rights reserved.</p>
+    <div class="story-grid reveal">
+      <div class="story-card">
+        <div class="head"><i class="bi bi-mouse3-fill"></i><h4>Healthcare &amp; Medtech</h4></div>
+        <ul>
+          <li>Custom healthcare software for medical device startups</li>
+          <li>Vital signs monitors, wearable patient monitors</li>
+          <li>Infusion pumps</li>
+          <li>Implant programmers and monitors</li>
+          <li>Remote patient monitoring platforms</li>
+          <li>RF ablation system (Nesa Medtech)</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="head"><i class="bi bi-diagram-3-fill"></i><h4>Industrial Automation</h4></div>
+        <ul>
+          <li>Consumer &amp; industrial-grade RO system (DrinkPrime)</li>
+          <li>Industry 4.0, factory-floor automation, supply chain</li>
+          <li>Predictive maintenance using AI and sensors</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="head"><i class="bi bi-watch"></i><h4>IoT &amp; Wearables</h4></div>
+        <ul>
+          <li>Wearable multi-parameter patient monitor (Ten3T)</li>
+          <li>Custom multi-sensor IoT hardware platform</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="head"><i class="bi bi-hdd-network-fill"></i><h4>Networking &amp; Communication</h4></div>
+        <ul>
+          <li>Layer-2 and Layer-3 networking protocol stack</li>
+          <li>Cloud architecture</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="head"><i class="bi bi-clouds-fill"></i><h4>Cloud &amp; Platform Engineering</h4></div>
+        <ul>
+          <li>Linux BSPs, RTOS for custom hardware</li>
+          <li>Microservices, multitenant, distributed systems design</li>
+          <li>Docker/Kubernetes for data-intensive apps (e.g. remote patient monitoring)</li>
+          <li>Legacy platform re-architecture</li>
+        </ul>
+      </div>
+      <div class="story-card">
+        <div class="head"><i class="bi bi-cpu-fill"></i><h4>Embedded Systems</h4></div>
+        <ul>
+          <li>Embedded hardware and firmware on MCUs, ARM, MIPS</li>
+          <li>RTOS, Linux/Unix kernel, embedded software stacks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="customers" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">Customers</div>
+      <h2>Who we've built for.</h2>
+    </div>
+    <div class="customer-grid reveal">
+      <div class="customer-card">
+        <div class="cat">Medical</div>
+        <img src="images/customer-nesa.png" alt="Nesa Medtech Private Limited">
+      </div>
+      <div class="customer-card">
+        <div class="cat">Consumer / Industrial</div>
+        <img src="images/customer-drinkprime.png" alt="DrinkPrime">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow on-light">Get in touch</div>
+      <h2>Tell us what you're building.</h2>
+      <p class="desc">Whether it's a compliance-heavy medical device or an early prototype, we'll tell you honestly what it'll take.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <div class="item">
+          <i class="bi bi-geo-alt"></i>
+          <div>
+            <h4>Address</h4>
+            <p>Coherentix Labs Pvt. Ltd.<br>No. 17, 1st Main, 2nd Cross,<br>Gopal Reddy Layout, Banaswadi,<br>Bangalore – 560043, Karnataka</p>
           </div>
-        </footer>
-      );
-    };
-
-    const App = () => {
-      return (
-        <div>
-          <NavBar />
-          <Hero />
-          <About />
-          <Expertise />
-          <Proposition />
-          <Stories />
-          <Customers />
-          <Contact />
-          <Footer />
         </div>
-      );
-    };
+        <div class="item">
+          <i class="bi bi-envelope"></i>
+          <div>
+            <h4>Email us</h4>
+            <p>contact@coherentix.com</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+        <form id="contact-form" action="https://formsubmit.co/ebith@coherentix.com" method="post" target="hidden_iframe">
+          <div class="field">
+            <label for="name-field">Your name</label>
+            <input type="text" name="name" id="name-field" placeholder="Jane Doe">
+          </div>
+          <div class="field">
+            <label for="email-field">Your email</label>
+            <input type="email" name="email" id="email-field" placeholder="jane@company.com">
+          </div>
+          <div class="field">
+            <label for="message-field">Your message</label>
+            <textarea name="message" id="message-field" rows="4" placeholder="What are you building?"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send message →</button>
+          <input type="text" name="_honey" style="display:none;">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <p class="form-note">We reply within one business day.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+<div id="success-toast">Your message has been sent successfully.</div>
 
+<footer>
+  <div class="wrap">
+    <a href="#home" class="fbrand">
+      <img src="images/logo.png" alt="Coherentix Labs">
+      <span>Coherent<em>ı<i class="dot"></i></em>x Labs</span>
+    </a>
+    <div class="flinks">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#stories">Stories</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="wrap copyright">© 2025 Coherentix Labs Pvt Ltd. All rights reserved.</div>
+</footer>
 
+<script>
+  // Signal dot wandering the blueprint grid — one axis at a time, at a constant,
+  // slow px/second speed (duration scales with distance, so speed never changes)
+  (function(){
+    const dot = document.getElementById('gridSignal');
+    const hero = document.getElementById('home');
+    const cell = 44;
+    const SPEED = 26; // px per second — slow and steady
+    const PAUSE = 500; // ms rest at each intersection
+    let x = 0, y = 0;
+
+    function randomTarget(){
+      const w = hero.clientWidth, h = hero.clientHeight;
+      const cols = Math.max(1, Math.floor(w / cell));
+      const rows = Math.max(1, Math.floor((h * 0.62) / cell));
+      const cx = Math.floor(Math.random() * cols);
+      const cy = Math.floor(Math.random() * rows) + 1;
+      return { tx: cx * cell, ty: cy * cell };
+    }
+
+    function moveAxis(prop, from, to, onDone){
+      const dist = Math.abs(to - from);
+      if (dist === 0) { onDone(); return; }
+      const duration = Math.max(300, Math.round((dist / SPEED) * 1000));
+      dot.style.transition = `${prop} ${duration}ms linear`;
+      // force reflow so the new transition duration takes effect before the change
+      void dot.offsetWidth;
+      dot.style[prop] = to + 'px';
+      setTimeout(onDone, duration);
+    }
+
+    function step(){
+      const { tx, ty } = randomTarget();
+      const horizFirst = Math.random() < 0.5;
+
+      function doHoriz(next){ moveAxis('left', x, tx, () => { x = tx; next(); }); }
+      function doVert(next){ moveAxis('top', y, ty, () => { y = ty; next(); }); }
+
+      const second = horizFirst ? doVert : doHoriz;
+      const first = horizFirst ? doHoriz : doVert;
+
+      first(() => {
+        setTimeout(() => {
+          second(() => {
+            setTimeout(step, PAUSE);
+          });
+        }, PAUSE);
+      });
+    }
+
+    dot.style.left = x + 'px';
+    dot.style.top = y + 'px';
+    requestAnimationFrame(() => { dot.style.opacity = '0.9'; });
+    step();
+  })();
+
+  // Theme toggle (light / dark), persisted where possible
+  (function(){
+    const root = document.documentElement;
+    const btn = document.getElementById('themeToggle');
+    const btnMobile = document.getElementById('themeToggleMobile');
+    const btnMobileLabel = document.getElementById('themeToggleMobileLabel');
+    const STORAGE_KEY = 'coherentix-theme';
+
+    function setIcon(theme){
+      const iconClass = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+      btn.querySelector('i').className = iconClass;
+      btnMobile.querySelector('i').className = iconClass;
+      btnMobileLabel.textContent = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+
+    function applyTheme(theme){
+      root.setAttribute('data-theme', theme);
+      setIcon(theme);
+      try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+
+    function toggle(){
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+    btn.addEventListener('click', toggle);
+    btnMobile.addEventListener('click', toggle);
+  })();
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobilemenu = document.getElementById('mobilemenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobilemenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  mobilemenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilemenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Contact form validation + success toast
+  const form = document.getElementById('contact-form');
+  const toast = document.getElementById('success-toast');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name-field').value.trim();
+    const email = document.getElementById('email-field').value.trim();
+    const message = document.getElementById('message-field').value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !message) {
+      alert('Please fill your name, email address and message before sending.');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    form.submit();
+    setTimeout(() => {
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+        form.reset();
+      }, 4000);
+    }, 800);
+  });
+</script>
 </body>
 </html>
