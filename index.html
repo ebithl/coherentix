@@ -173,7 +173,7 @@
     position:relative;
     background:var(--ink);
     color:var(--text-on-ink);
-    padding:104px 0 0 0;
+    padding:92px 0 0 0;
     overflow:hidden;
   }
   .blueprint-grid{
@@ -194,7 +194,11 @@
     pointer-events:none; z-index:1;
   }
 
-  .hero-inner{ position:relative; z-index:2; padding-bottom:30px; }
+  .hero-inner{
+    position:relative; z-index:2; padding-bottom:18px;
+    display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;
+  }
+  .hero-text{ flex:1 1 480px; max-width:700px; }
   .hero-inner h1{
     font-size:clamp(30px, 3.6vw, 46px);
     line-height:1.1;
@@ -206,6 +210,42 @@
     margin-top:16px; max-width:540px; font-size:15.5px; line-height:1.55; color:var(--text-on-ink-muted);
   }
   .hero-cta{ display:flex; gap:14px; margin-top:24px; flex-wrap:wrap; }
+
+  /* ---------- HERO PRODUCT FLIP CARDS ---------- */
+  .hero-products{
+    flex:0 0 300px; display:flex; flex-direction:column; gap:8px; perspective:1200px; margin-top:4px;
+  }
+  .hero-products .eyebrow{ margin-bottom:2px; }
+  .flip-card{ height:64px; cursor:pointer; }
+  .flip-inner{
+    position:relative; width:100%; height:100%; transition:transform .6s cubic-bezier(.4,0,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card:hover .flip-inner,
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-front, .flip-back{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    border-radius:10px; display:flex; align-items:center; gap:12px; padding:0 16px;
+    background:linear-gradient(160deg, var(--ink-3), var(--ink-2));
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .flip-back{
+    transform:rotateY(180deg);
+    background:linear-gradient(160deg, rgba(34,184,166,0.18), var(--ink-2));
+    border-color:rgba(34,184,166,0.35);
+  }
+  .flip-icon{
+    width:32px; height:32px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    background:rgba(34,184,166,0.12); border:1px solid rgba(34,184,166,0.3); color:var(--signal); font-size:15px;
+  }
+  .flip-name{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:13.5px; color:#fff; line-height:1.25; flex:1; }
+  .flip-hint{ color:var(--text-on-ink-muted); font-size:12px; flex-shrink:0; }
+  .flip-back p{ font-size:11.5px; color:var(--text-on-ink-muted); line-height:1.4; margin:0; }
+  @media (max-width:640px){
+    .hero-products{ flex-basis:100%; }
+    .flip-card{ height:62px; }
+  }
+
   .btn{
     font-family:'IBM Plex Mono', monospace; font-size:13px; font-weight:500;
     padding:12px 22px; border-radius:3px; display:inline-flex; align-items:center; gap:8px;
@@ -220,13 +260,13 @@
 
   .titleblock{
     position:relative; z-index:2;
-    padding:26px 0 40px;
+    padding:18px 0 26px;
   }
   .titleblock .wrap{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
   .titleblock .cell{
-    height:140px;
-    padding:16px 16px;
-    display:flex; flex-direction:column; gap:8px;
+    height:114px;
+    padding:14px 16px;
+    display:flex; flex-direction:column; gap:6px;
     font-family:'IBM Plex Mono', monospace;
     background:linear-gradient(160deg, var(--ink-3), var(--ink-2));
     border:1px solid rgba(255,255,255,0.07);
@@ -298,7 +338,7 @@
   }
 
   /* ---------- STANDARDS STRIP ---------- */
-  #standards{ padding:52px 0; border-bottom:1px solid var(--line); }
+  #standards{ padding:36px 0; border-bottom:1px solid var(--line); }
   #standards .row{ display:flex; align-items:center; gap:28px; flex-wrap:wrap; justify-content:space-between; }
   #standards .label{ font-size:13px; color:var(--text-muted); max-width:210px; }
   .chips{ display:flex; flex-wrap:wrap; gap:10px; flex:1; }
@@ -343,23 +383,72 @@
   @media (max-width:900px){ .svc-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){ .svc-grid{ grid-template-columns:1fr; } }
 
-  /* ---------- EXPERTISE ---------- */
-  .expertise-list{ display:flex; flex-direction:column; border-top:1px solid var(--line); }
-  .exp-row{ display:grid; grid-template-columns:56px 260px 1fr; gap:30px; padding:36px 0; border-bottom:1px solid var(--line); align-items:start; }
-  .exp-row .num{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--signal); padding-top:4px; }
-  .exp-row .titlecol{ display:flex; align-items:flex-start; gap:12px; }
-  .exp-row .titlecol i{ color:var(--signal); font-size:18px; margin-top:2px; }
-  .exp-row .titletext{ display:flex; flex-direction:column; gap:7px; }
-  .exp-row h3{ font-size:16.5px; line-height:1.35; }
-  .exp-row .sub{
-    font-size:13.5px; line-height:1.5; color:var(--text-muted);
+  /* ---------- EXPERTISE (interactive capability rail) ---------- */
+  .capability-interactive{ display:grid; grid-template-columns:340px 1fr; gap:36px; align-items:start; }
+
+  .capability-rail{ position:relative; display:flex; flex-direction:column; gap:4px; }
+  .rail-highlight{
+    position:absolute; left:0; right:0; height:0; top:0;
+    background:linear-gradient(90deg, rgba(34,184,166,0.10), rgba(34,184,166,0.02));
+    border:1px solid rgba(34,184,166,0.28); border-radius:12px;
+    transition:top .35s cubic-bezier(.4,0,.2,1), height .35s cubic-bezier(.4,0,.2,1), opacity .2s ease;
+    z-index:0; pointer-events:none; opacity:0;
   }
-  .exp-row ul{ list-style:none; display:grid; grid-template-columns:1fr; gap:12px; }
-  .exp-row li{ font-size:14px; color:var(--text-muted); padding-left:18px; position:relative; line-height:1.65; }
-  .exp-row li strong{ color:var(--text); font-weight:600; }
-  .exp-row li::before{ content:"—"; position:absolute; left:0; color:var(--signal); }
-  @media (max-width:820px){
-    .exp-row{ grid-template-columns:1fr; gap:12px; }
+  .rail-item{
+    position:relative; z-index:1; display:flex; align-items:center; gap:16px;
+    width:100%; padding:16px 14px; border-radius:12px; background:none; border:0; text-align:left;
+    cursor:pointer; transition:transform .2s ease; font-family:inherit;
+  }
+  .rail-item:hover{ transform:translateX(3px); }
+  .rail-item:not(:last-child)::after{
+    content:""; position:absolute; left:38px; top:66px; width:2px; height:20px; background:var(--line); z-index:0;
+  }
+  .rail-icon{
+    width:48px; height:48px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    background:var(--card); border:1.5px solid var(--line); color:var(--text-muted); font-size:19px;
+    transition:background .3s ease, border-color .3s ease, color .3s ease, box-shadow .3s ease; position:relative; z-index:1;
+  }
+  .rail-item.active .rail-icon{
+    background:var(--signal); border-color:var(--signal); color:#fff;
+    box-shadow:0 0 0 6px rgba(34,184,166,0.14);
+  }
+  .rail-text{ display:flex; flex-direction:column; gap:3px; }
+  .rail-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-muted); letter-spacing:0.05em; transition:color .2s ease; }
+  .rail-item.active .rail-num{ color:#0E9184; }
+  .rail-title{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15.5px; color:var(--text-muted); line-height:1.35; transition:color .2s ease; }
+  .rail-item.active .rail-title{ color:var(--text); }
+
+  .capability-panel{ position:relative; min-height:360px; }
+  .capability-slide{
+    display:none; background:var(--ink); color:var(--text-on-ink); border-radius:var(--radius);
+    padding:40px 44px; position:relative; overflow:hidden; box-shadow:0 20px 40px -24px rgba(0,0,0,0.4);
+  }
+  .capability-slide::before{ content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--signal); }
+  .capability-slide.active{ display:block; animation:capFade .4s ease; }
+  @keyframes capFade{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+  .panel-counter{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--signal-dim);
+    letter-spacing:0.06em; text-transform:uppercase; display:block; margin-bottom:20px;
+  }
+  .panel-head{ display:flex; gap:18px; align-items:flex-start; margin-bottom:24px; }
+  .panel-head i{ font-size:30px; color:var(--signal); margin-top:2px; flex-shrink:0; }
+  .panel-head h3{ color:#fff; font-size:clamp(20px,2.2vw,25px); margin-bottom:8px; line-height:1.3; }
+  .panel-sub{ color:var(--text-on-ink-muted); font-size:14.5px; line-height:1.6; }
+
+  @media (max-width:900px){
+    .capability-interactive{ grid-template-columns:1fr; }
+    .capability-rail{
+      flex-direction:row; overflow-x:auto; gap:10px; padding-bottom:8px; -webkit-overflow-scrolling:touch;
+    }
+    .rail-highlight{ display:none; }
+    .rail-item{ flex:0 0 auto; flex-direction:column; text-align:center; gap:8px; padding:12px 16px; }
+    .rail-item:hover{ transform:none; }
+    .rail-item:not(:last-child)::after{ display:none; }
+    .rail-text{ align-items:center; }
+    .rail-title{ font-size:12px; max-width:110px; }
+  }
+  @media (max-width:640px){
+    .capability-slide{ padding:28px 24px; }
   }
 
   /* ---------- ENGAGEMENT MODELS ---------- */
@@ -398,15 +487,24 @@
     font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.04em; text-transform:uppercase;
     color:var(--signal-dim);
   }
-  .carousel-slide .field-list{ list-style:none; }
-  .carousel-slide .field-list li{
+  .field-list{ list-style:none; }
+  .field-list li{
     font-size:14.5px; color:var(--text-on-ink-muted); line-height:1.65;
     padding:13px 0 13px 18px; border-top:1px solid var(--line-ink); position:relative;
   }
-  .carousel-slide .field-list li:first-child{ border-top:none; padding-top:0; }
-  .carousel-slide .field-list li::before{ content:"—"; position:absolute; left:0; top:13px; color:var(--signal); }
-  .carousel-slide .field-list li:first-child::before{ top:0; }
-  .carousel-slide .field-list li strong{ color:#fff; font-weight:600; }
+  .field-list li:first-child{ border-top:none; padding-top:0; }
+  .field-list li::before{ content:"—"; position:absolute; left:0; top:13px; color:var(--signal); }
+  .field-list li:first-child::before{ top:0; }
+  .field-list li strong{ color:#fff; font-weight:600; }
+  .field-list li i.li-icon{ color:var(--signal); margin-right:8px; font-size:13px; }
+
+  .tag-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .tag-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.02em;
+    color:var(--signal-dim); background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16);
+    padding:4px 9px; border-radius:3px; display:inline-block;
+  }
+
   .carousel-dots{ display:flex; gap:8px; justify-content:center; margin-top:30px; }
   .carousel-dots button{
     width:8px; height:8px; border-radius:50%; background:var(--line-ink); border:0; padding:0; cursor:pointer;
@@ -524,11 +622,56 @@
   <div class="grid-signal" id="gridSignal" aria-hidden="true"></div>
 
   <div class="wrap hero-inner">
-    <h1>Coherent Intelligent Systems, <span class="accent">Expertly Crafted.</span></h1>
-    <p class="lede">Your end-to-end engineering partner for mission-critical, regulated products. We build medical devices, Industrial IoT and AI-enabled software – taking your ideas from concept and first prototype through full FDA and IEC certification.</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-solid">Start a project →</a>
-      <a href="#expertise" class="btn btn-ghost">See our expertise</a>
+    <div class="hero-text">
+      <h1>Coherent Intelligent Systems, <span class="accent">Expertly Crafted.</span></h1>
+      <p class="lede">Your end-to-end engineering partner for mission-critical, regulated products. We build medical devices, Industrial IoT, and AI-enabled software — taking your ideas from concept and first prototype through full FDA and IEC certification.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-solid">Start a project →</a>
+        <a href="#expertise" class="btn btn-ghost">See our expertise</a>
+      </div>
+    </div>
+
+    <div class="hero-products">
+      <div class="eyebrow">In-house products</div>
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon"><i class="bi bi-patch-check-fill"></i></span>
+            <span class="flip-name">QMS Studio</span>
+            <i class="bi bi-arrow-repeat flip-hint"></i>
+          </div>
+          <div class="flip-back">
+            <p>AI-centric compliance &amp; document management for QARA teams.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon"><i class="bi bi-people-fill"></i></span>
+            <span class="flip-name">OPD Queue Manager</span>
+            <i class="bi bi-arrow-repeat flip-hint"></i>
+          </div>
+          <div class="flip-back">
+            <p>Intelligent OPD queue &amp; triage with automated risk scoring.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <span class="flip-icon"><i class="bi bi-heart-pulse-fill"></i></span>
+            <span class="flip-name">Cardiac Bioacoustics</span>
+            <i class="bi bi-arrow-repeat flip-hint"></i>
+          </div>
+          <div class="flip-back">
+            <p>Synchronized ECG, PCG &amp; PPG diagnostic analytics platform.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -550,7 +693,7 @@
         </div>
       </div>
       <div class="cell">
-        <div class="k"><i class="bi bi-buildings-fill"></i>Formed by Engineers from</div>
+        <div class="k"><i class="bi bi-buildings-fill"></i>Founded by engineers from</div>
         <div class="cell-body"><div class="v wrap" title="GE · Philips · HP · Wipro · Tektronix">GE · Philips · HP · Wipro · Tektronix</div></div>
       </div>
       <!--<div class="cell">
@@ -561,13 +704,14 @@
   </div>
 </section>
 
-<section id="standards">
+<section id="standards" class="alt">
   <div class="wrap">
     <div class="row">
       <div class="label eyebrow on-light" style="margin-bottom:0;">Standards we engineer</div>
       <div class="chips">
         <span class="chip">IEC 60601</span>
         <span class="chip">IEC 62304</span>
+        <span class="chip">ISO 13485</span>
         <span class="chip">ISO 14971</span>
         <span class="chip">ISO 27001</span>
         <span class="chip">ISO 26262</span>
@@ -614,7 +758,7 @@
       <div class="svc-card"><div class="idx"><i class="bi bi-layers-fill"></i></div><h3>Full-stack product engineering</h3><p>Hardware, firmware, cloud, apps, data, and AI delivered by one integrated technical team.</p></div>
       <div class="svc-card"><div class="idx"><i class="bi bi-patch-check-fill"></i></div><h3>Regulated-domain discipline</h3><p>IEC, ISO, FDA, CDSCO, and QMS-aware engineering from early architecture through validation.</p></div>
       <div class="svc-card"><div class="idx"><i class="bi bi-lightbulb-fill"></i></div><h3>Prototype to market</h3><p>From PoC and board bring-up to cloud deployment, compliance testing, and release support.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-heart-pulse-fill"></i></div><h3>Medical + industrial depth</h3><p>Experience across patient monitoring, surgical devices, industrial IoT, and cleantech systems.</p></div>
+      <div class="svc-card"><div class="idx"><i class="bi bi-heart-pulse-fill"></i></div><h3>Medical + industrial depth</h3><p>Experience across patient monitoring, surgical devices, industrial IoT, and clean-tech systems.</p></div>
       <div class="svc-card"><div class="idx"><i class="bi bi-robot"></i></div><h3>AI with product context</h3><p>Diagnostic imaging, anomaly detection, compliance automation, and RAG/agentic workflows.</p></div>
       <div class="svc-card"><div class="idx"><i class="bi bi-shield-lock-fill"></i></div><h3>Confidential execution</h3><p>NDA-ready engineering support for startups, enterprises, and strategic technology partners.</p></div>
     </div>
@@ -628,48 +772,132 @@
       <h2>Where we go deep.</h2>
       <p class="desc">Production-grade engineering across regulated domains, complex hardware, and intelligent software.</p>
     </div>
-    <div class="expertise-list reveal">
 
-      <div class="exp-row">
-        <div class="num">01</div>
-        <div class="titlecol"><i class="bi bi-patch-check-fill"></i><div class="titletext"><h3>Regulated Product Engineering</h3><p class="sub">Full-lifecycle design and engineering built around strict compliance frameworks.</p></div></div>
-        <ul>
-          <li><strong>Medical &amp; Healthcare:</strong> Patient monitors, wearables, infusion pumps, and implant monitors compliant with IEC 60601, IEC 62304, ISO 14971, and ISO 27001. Hands-on FDA 510(k) and CDSCO regulatory navigation.</li>
-          <li><strong>Industrial Systems:</strong> Functional safety engineering for mission-critical industrial automation complying with IEC 61508.</li>
-          <li><strong>Automotive:</strong> Automotive-grade hardware and software compliant with ISO 26262 standards.</li>
-        </ul>
+    <div class="capability-interactive reveal">
+
+      <div class="capability-rail" id="capabilityRail">
+        <div class="rail-highlight" id="railHighlight" aria-hidden="true"></div>
+
+        <button class="rail-item active" type="button" data-index="0">
+          <span class="rail-icon"><i class="bi bi-patch-check-fill"></i></span>
+          <span class="rail-text">
+            <span class="rail-num">01</span>
+            <span class="rail-title">Regulated Product Engineering</span>
+          </span>
+        </button>
+
+        <button class="rail-item" type="button" data-index="1">
+          <span class="rail-icon"><i class="bi bi-lightning-charge-fill"></i></span>
+          <span class="rail-text">
+            <span class="rail-num">02</span>
+            <span class="rail-title">Rapid Innovation &amp; Consulting</span>
+          </span>
+        </button>
+
+        <button class="rail-item" type="button" data-index="2">
+          <span class="rail-icon"><i class="bi bi-robot"></i></span>
+          <span class="rail-text">
+            <span class="rail-num">03</span>
+            <span class="rail-title">Applied AI &amp; Data Intelligence</span>
+          </span>
+        </button>
+
+        <button class="rail-item" type="button" data-index="3">
+          <span class="rail-icon"><i class="bi bi-tools"></i></span>
+          <span class="rail-text">
+            <span class="rail-num">04</span>
+            <span class="rail-title">Core Engineering Stack</span>
+          </span>
+        </button>
       </div>
 
-      <div class="exp-row">
-        <div class="num">02</div>
-        <div class="titlecol"><i class="bi bi-lightning-charge-fill"></i><div class="titletext"><h3>Rapid Innovation &amp; Consulting</h3><p class="sub">Strategic technical execution tailored to early-stage startups and enterprise product teams.</p></div></div>
-        <ul>
-          <li><strong>Concept to PoC:</strong> Accelerated prototyping and proof-of-concept development to validate complex hardware and software architectures.</li>
-          <li><strong>Technical Leadership &amp; Advisory:</strong> Fractional CTO and engineering leadership, regulatory audit preparation for IEC 62304, FDA 510(k), and CDSCO, plus flexible IP ownership models.</li>
-        </ul>
-      </div>
+      <div class="capability-panel">
 
-      <div class="exp-row">
-        <div class="num">03</div>
-        <div class="titlecol"><i class="bi bi-robot"></i><div class="titletext"><h3>Applied AI &amp; Data Intelligence</h3><p class="sub">Next-generation AI integration for automated diagnostics and regulated operations.</p></div></div>
-        <ul>
-          <li><strong>Diagnostic &amp; Sensing Platforms:</strong> Organ segmentation, computer-vision anomaly detection, and predictive event analysis.</li>
-          <li><strong>Intelligent QMS &amp; Compliance:</strong> AI-driven document management, artifact auditing, and automated compliance tracking.</li>
-          <li><strong>GenAI Infrastructure:</strong> RAG-based domain knowledge systems, Agentic AI workflows, and LLM applications.</li>
-        </ul>
-      </div>
+        <div class="capability-slide active" data-index="0">
+          <span class="panel-counter">Capability 01 / 04</span>
+          <div class="panel-head">
+            <i class="bi bi-patch-check-fill"></i>
+            <div>
+              <h3>Regulated Product Engineering</h3>
+              <p class="panel-sub">Full-lifecycle design and engineering built around strict compliance frameworks.</p>
+            </div>
+          </div>
+          <ul class="field-list">
+            <li><strong>Medical &amp; Healthcare:</strong> Patient monitors, wearables, infusion pumps, and implant monitors compliant with IEC 60601, IEC 62304, ISO 14971, and ISO 27001. Hands-on FDA 510(k) and CDSCO regulatory navigation.
+              <div class="tag-row">
+                <span class="tag-chip">IEC 60601</span>
+                <span class="tag-chip">IEC 62304</span>
+                <span class="tag-chip">ISO 14971</span>
+                <span class="tag-chip">ISO 27001</span>
+                <span class="tag-chip">FDA 510(k)</span>
+                <span class="tag-chip">CDSCO</span>
+              </div>
+            </li>
+            <li><strong>Industrial Systems:</strong> Functional safety engineering for mission-critical industrial automation complying with IEC 61508.
+              <div class="tag-row"><span class="tag-chip">IEC 61508</span></div>
+            </li>
+            <li><strong>Automotive:</strong> Automotive-grade hardware and software compliant with ISO 26262 standards.
+              <div class="tag-row"><span class="tag-chip">ISO 26262</span></div>
+            </li>
+          </ul>
+        </div>
 
-      <div class="exp-row">
-        <div class="num">04</div>
-        <div class="titlecol"><i class="bi bi-tools"></i><div class="titletext"><h3>Core Engineering Stack</h3><p class="sub">Deep technical execution across the entire software and hardware lifecycle.</p></div></div>
-        <ul>
-          <li><strong>Hardware &amp; Industrial Design:</strong> Custom PCB/PCBA engineering, industrial design, concept 3D printing, rapid enclosure prototyping, board bring-up, and low-volume hardware production with DFM/DFA guidance.</li>
-          <li><strong>Embedded Systems &amp; Firmware:</strong> Low-level C/C++ development, RTOS, embedded Linux Kernel and BSPs, microcontroller architectures including ARM and MIPS, custom device drivers, and edge IoT platforms.</li>
-          <li><strong>Software, Cloud &amp; Test Engineering:</strong> Open-source software stacks, microservices, Linux ecosystem, full-stack web platforms using Node.js, Angular, and Java, plus containerized cloud systems with Docker and Kubernetes. Specialized software engineering for Test &amp; Measurement, automated test equipment, data acquisition, signal processing, and custom diagnostic toolchains.</li>
-        </ul>
-      </div>
+        <div class="capability-slide" data-index="1">
+          <span class="panel-counter">Capability 02 / 04</span>
+          <div class="panel-head">
+            <i class="bi bi-lightning-charge-fill"></i>
+            <div>
+              <h3>Rapid Innovation &amp; Consulting</h3>
+              <p class="panel-sub">Strategic technical execution tailored to early-stage startups and enterprise product teams.</p>
+            </div>
+          </div>
+          <ul class="field-list">
+            <li><strong>Concept to PoC:</strong> Accelerated prototyping and proof-of-concept development to validate complex hardware and software architectures.</li>
+            <li><strong>Technical Leadership &amp; Advisory:</strong> Fractional CTO and engineering leadership, regulatory audit preparation for IEC 62304, FDA 510(k), and CDSCO, plus flexible IP ownership models.
+              <div class="tag-row">
+                <span class="tag-chip">IEC 62304</span>
+                <span class="tag-chip">FDA 510(k)</span>
+                <span class="tag-chip">CDSCO</span>
+              </div>
+            </li>
+          </ul>
+        </div>
 
+        <div class="capability-slide" data-index="2">
+          <span class="panel-counter">Capability 03 / 04</span>
+          <div class="panel-head">
+            <i class="bi bi-robot"></i>
+            <div>
+              <h3>Applied AI &amp; Data Intelligence</h3>
+              <p class="panel-sub">Next-generation AI integration for automated diagnostics and regulated operations.</p>
+            </div>
+          </div>
+          <ul class="field-list">
+            <li><strong>Diagnostic &amp; Sensing Platforms:</strong> Organ segmentation, computer-vision anomaly detection, and predictive event analysis.</li>
+            <li><strong>Intelligent QMS &amp; Compliance:</strong> AI-driven document management, artifact auditing, and automated compliance tracking.</li>
+            <li><strong>GenAI Infrastructure:</strong> RAG-based domain knowledge systems, Agentic AI workflows, and LLM applications.</li>
+          </ul>
+        </div>
+
+        <div class="capability-slide" data-index="3">
+          <span class="panel-counter">Capability 04 / 04</span>
+          <div class="panel-head">
+            <i class="bi bi-tools"></i>
+            <div>
+              <h3>Core Engineering Stack</h3>
+              <p class="panel-sub">Deep technical execution across the entire software and hardware lifecycle.</p>
+            </div>
+          </div>
+          <ul class="field-list">
+            <li><strong>Hardware &amp; Industrial Design:</strong> Custom PCB/PCBA engineering, industrial design, concept 3D printing, rapid enclosure prototyping, board bring-up, and low-volume hardware production with DFM/DFA guidance.</li>
+            <li><strong>Embedded Systems &amp; Firmware:</strong> Low-level C/C++ development, RTOS, embedded Linux Kernel and BSPs, microcontroller architectures including ARM and MIPS, custom device drivers, and edge IoT platforms.</li>
+            <li><strong>Software, Cloud &amp; Test Engineering:</strong> Open-source software stacks, microservices, Linux ecosystem, full-stack web platforms using Node.js, Angular, and Java, plus containerized cloud systems with Docker and Kubernetes. Specialized software engineering for Test &amp; Measurement, automated test equipment, data acquisition, signal processing, and custom diagnostic toolchains.</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -678,7 +906,7 @@
     <div class="section-head reveal">
       <div class="eyebrow on-light">Product and Design Success Stories</div>
       <h2>Featured Success Stories</h2>
-      <p class="desc">Client engagements and in-house products we've delivered — one at a time.</p>
+      <p class="desc">Client engagements and in-house products we've delivered.</p>
     </div>
 
     <div class="stories-carousel reveal">
@@ -700,6 +928,10 @@
               <span class="meta">Medical Devices &amp; Digital Health</span>
             </div>
           </div>
+          <div class="tag-row">
+            <span class="tag-chip">FDA 510(k) Cleared</span>
+            <span class="tag-chip">Multi-Site Deployment</span>
+          </div>
           <ul class="field-list">
             <li><strong>Scope:</strong> Turnkey product engineering from initial concept through market launch and FDA clearance.</li>
             <li><strong>Engineering Highlights:</strong> Architected a wearable IoT medical device system connected to a data-intensive cloud platform. Designed a centralized command center supporting real-time event triaging, disposition, and diagnostic reporting across multi-site fixed and mobile environments.</li>
@@ -715,6 +947,9 @@
               <span class="meta">Client: Nesa Medtech · Surgical Devices</span>
             </div>
           </div>
+          <div class="tag-row">
+            <span class="tag-chip">CDSCO Cleared</span>
+          </div>
           <ul class="field-list">
             <li><strong>Scope:</strong> End-to-end engineering of a minimally invasive radiofrequency (RF) tissue ablation system.</li>
             <li><strong>Engineering Highlights:</strong> Integrated real-time ultrasound imaging to guide probe placement into target abnormal tissue, including uterine fibroids. Built a closed-loop protective feedback loop to precisely control thermal energy delivery and preserve surrounding tissue.</li>
@@ -729,6 +964,10 @@
               <h3>EchoSense: AI Diagnostic Imaging Platform</h3>
               <span class="meta">Client: Nesa Medtech · AI &amp; Diagnostic Software</span>
             </div>
+          </div>
+          <div class="tag-row">
+            <span class="tag-chip">In Active Development</span>
+            <span class="tag-chip">ICIICC 2026</span>
           </div>
           <ul class="field-list">
             <li><strong>Scope:</strong> Computer-vision software platform for automated organ segmentation and anomaly classification.</li>
@@ -746,6 +985,10 @@
               <span class="meta">Client: DrinkPrime · Industrial IoT &amp; CleanTech</span>
             </div>
           </div>
+          <div class="tag-row">
+            <span class="tag-chip">Multi-Tenant</span>
+            <span class="tag-chip">IoT-Enabled</span>
+          </div>
           <ul class="field-list">
             <li><strong>Scope:</strong> Architecture, system design, and rapid prototyping for a high-growth water-purification startup.</li>
             <li><strong>Engineering Highlights:</strong> Built an industrial-grade, centralized Reverse Osmosis (RO) platform equipped with IoT sensors to monitor, meter, and optimize water delivery across multi-tenant residential complexes.</li>
@@ -759,6 +1002,9 @@
               <h3>Smart Kitchen IoT Appliance</h3>
               <span class="meta">Client: IoT Hardware Startup · Consumer Technology</span>
             </div>
+          </div>
+          <div class="tag-row">
+            <span class="tag-chip">Concept → PoC</span>
           </div>
           <ul class="field-list">
             <li><strong>Scope:</strong> Rapid concept-to-PoC product engineering for an early-stage consumer smart appliance.</li>
@@ -775,9 +1021,9 @@
             </div>
           </div>
           <ul class="field-list">
-            <li><strong>QMS Studio:</strong> AI-centric compliance and document management system for agile product and QARA teams, with automated requirement reviews, AI-assisted ISO 13485 auditing, compliance verification, and real-time gap analysis.</li>
-            <li><strong>Outpatient Department Queue Manager System:</strong> Intelligent OPD queue and triage platform that captures patient history, vitals, symptoms, and diagnostic reports via voice and digital inputs, with risk scoring to escalate critical patients.</li>
-            <li><strong>Multi-Modal Cardiac Bioacoustics Platform:</strong> Non-continuous diagnostic device integrating synchronized ECG, PCG, and PPG sensors to deliver synchronized cardiac performance analytics.</li>
+            <li><i class="bi bi-patch-check-fill li-icon"></i><strong>QMS Studio:</strong> AI-centric compliance and document management system for agile product and QARA teams, with automated requirement reviews, AI-assisted ISO 13485 auditing, compliance verification, and real-time gap analysis.</li>
+            <li><i class="bi bi-people-fill li-icon"></i><strong>Outpatient Department Queue Manager System:</strong> Intelligent OPD queue and triage platform that captures patient history, vitals, symptoms, and diagnostic reports via voice and digital inputs, with risk scoring to escalate critical patients.</li>
+            <li><i class="bi bi-heart-pulse-fill li-icon"></i><strong>Multi-Modal Cardiac Bioacoustics Platform:</strong> Non-continuous diagnostic device integrating synchronized ECG, PCG, and PPG sensors to deliver synchronized cardiac performance analytics.</li>
           </ul>
         </div>
 
@@ -1060,6 +1306,51 @@
 
     render();
     restart();
+  })();
+
+  // Capability rail — hover/click/keyboard switches the active detail panel,
+  // with a highlight pill that slides smoothly to track the active item
+  (function(){
+    const rail = document.getElementById('capabilityRail');
+    if (!rail) return;
+    const items = Array.from(rail.querySelectorAll('.rail-item'));
+    const highlight = document.getElementById('railHighlight');
+    const slides = Array.from(document.querySelectorAll('.capability-slide'));
+    const isStacked = () => window.matchMedia('(max-width:900px)').matches;
+
+    function positionHighlight(i){
+      const el = items[i];
+      if (!el || isStacked()) { highlight.style.opacity = '0'; return; }
+      highlight.style.opacity = '1';
+      highlight.style.top = el.offsetTop + 'px';
+      highlight.style.height = el.offsetHeight + 'px';
+    }
+
+    function setActive(i){
+      items.forEach((el, idx) => el.classList.toggle('active', idx === i));
+      slides.forEach((el, idx) => el.classList.toggle('active', idx === i));
+      positionHighlight(i);
+    }
+
+    items.forEach((el, i) => {
+      el.addEventListener('mouseenter', () => setActive(i));
+      el.addEventListener('click', () => setActive(i));
+      el.addEventListener('focus', () => setActive(i));
+    });
+
+    window.addEventListener('resize', () => {
+      const activeIdx = items.findIndex(el => el.classList.contains('active'));
+      positionHighlight(activeIdx < 0 ? 0 : activeIdx);
+    });
+
+    requestAnimationFrame(() => positionHighlight(0));
+  })();
+
+  // Hero product flip cards — click toggles flip (touch/accessibility fallback for the hover effect)
+  (function(){
+    document.querySelectorAll('.flip-card').forEach((card) => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
   })();
 
   // Mobile menu
