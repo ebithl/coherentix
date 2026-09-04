@@ -281,9 +281,9 @@
   }
   .titleblock .cell .k{
     font-size:9.5px; letter-spacing:0.07em; text-transform:uppercase; color:var(--text-on-ink-muted);
-    display:flex; align-items:flex-start; gap:6px; white-space:normal; flex-shrink:0; line-height:1.3;
+    display:flex; align-items:center; gap:6px; white-space:normal; flex-shrink:0; line-height:1.3;
   }
-  .titleblock .cell .k i{ color:var(--signal); font-size:12px; flex-shrink:0; margin-top:1px; }
+  .titleblock .cell .k i{ color:var(--signal); font-size:12px; flex-shrink:0; }
   .titleblock .cell .cell-body{ flex:1; display:flex; align-items:center; min-height:0; }
   .titleblock .cell .v{
     font-size:13px; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%;
@@ -368,6 +368,7 @@
 
   /* ---------- WHY COHERENTIX ---------- */
   .svc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .svc-head{ display:flex; align-items:center; gap:12px; margin-bottom:9px; }
   .svc-card{
     background:var(--card); padding:28px 24px;
     border:1px solid var(--line); border-radius:8px;
@@ -378,9 +379,9 @@
   .svc-card .idx{
     width:34px; height:34px; border-radius:7px; display:flex; align-items:center; justify-content:center;
     background:rgba(34,184,166,0.10); border:1px solid rgba(34,184,166,0.25); color:var(--signal);
-    font-size:16px;
+    font-size:16px; flex-shrink:0;
   }
-  .svc-card h3{ font-size:16px; margin:16px 0 9px; line-height:1.3; }
+  .svc-card h3{ font-size:16px; margin:0; line-height:1.3; }
   .svc-card p{ font-size:13.5px; color:var(--text-muted); line-height:1.55; }
   @media (max-width:900px){ .svc-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px){ .svc-grid{ grid-template-columns:1fr; } }
@@ -461,7 +462,7 @@
   .process-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:64px; }
   .process-step{ position:relative; text-align:center; padding:0 6px; }
   .process-step:not(:last-child)::after{
-    content:""; position:absolute; top:26px; left:calc(50% + 28px); right:calc(-50% + 28px);
+    content:""; position:absolute; top:47px; left:calc(50% + 28px); right:calc(-50% + 28px);
     height:2px; background:var(--line); z-index:0;
   }
   .process-icon{
@@ -856,12 +857,12 @@
       <p class="desc">Senior engineering depth across hardware, software, AI, and regulated product delivery.</p>
     </div>
     <div class="svc-grid reveal">
-      <div class="svc-card"><div class="idx"><i class="bi bi-layers-fill"></i></div><h3>Full-stack product engineering</h3><p>Hardware, firmware, cloud, apps, data, and AI delivered by one integrated technical team.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-patch-check-fill"></i></div><h3>Regulated-domain discipline</h3><p>IEC, ISO, FDA, CDSCO, and QMS-aware engineering from early architecture through validation.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-lightbulb-fill"></i></div><h3>Prototype to market</h3><p>From PoC and board bring-up to cloud deployment, compliance testing, and release support.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-heart-pulse-fill"></i></div><h3>Medical + industrial depth</h3><p>Experience across patient monitoring, surgical devices, industrial IoT, and clean-tech systems.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-robot"></i></div><h3>AI with product context</h3><p>Diagnostic imaging, anomaly detection, compliance automation, and RAG/agentic workflows.</p></div>
-      <div class="svc-card"><div class="idx"><i class="bi bi-shield-lock-fill"></i></div><h3>Confidential execution</h3><p>NDA-ready engineering support for startups, enterprises, and strategic technology partners.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-layers-fill"></i></div><h3>Full-stack product engineering</h3></div><p>Hardware, firmware, cloud, apps, data, and AI delivered by one integrated technical team.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-patch-check-fill"></i></div><h3>Regulated-domain discipline</h3></div><p>IEC, ISO, FDA, CDSCO, and QMS-aware engineering from early architecture through validation.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-lightbulb-fill"></i></div><h3>Prototype to market</h3></div><p>From PoC and board bring-up to cloud deployment, compliance testing, and release support.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-heart-pulse-fill"></i></div><h3>Medical + industrial depth</h3></div><p>Experience across patient monitoring, surgical devices, industrial IoT, and clean-tech systems.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-robot"></i></div><h3>AI with product context</h3></div><p>Diagnostic imaging, anomaly detection, compliance automation, and RAG/agentic workflows.</p></div>
+      <div class="svc-card"><div class="svc-head"><div class="idx"><i class="bi bi-shield-lock-fill"></i></div><h3>Confidential execution</h3></div><p>NDA-ready engineering support for startups, enterprises, and strategic technology partners.</p></div>
     </div>
   </div>
 </section>
